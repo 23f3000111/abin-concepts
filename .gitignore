@@ -1,0 +1,8 @@
+# Source material supplied by the client (the sites use processed copies)
+ui images/
+ABIN PACKAGING.pdf
+Catalogue aBin Corn Stick.pdf
+# Tool leftovers
+.playwright-mcp/
+node_modules/
+_previews/
