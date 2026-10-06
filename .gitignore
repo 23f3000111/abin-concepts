@@ -6,3 +6,5 @@ Catalogue aBin Corn Stick.pdf
 .playwright-mcp/
 node_modules/
 _previews/
+tools/.cache/
+.superpowers/
