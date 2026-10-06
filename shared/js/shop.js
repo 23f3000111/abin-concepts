@@ -317,6 +317,7 @@
       Object.keys(vals).forEach(function (k) { pp(k).forEach(function (el) { text(el, vals[k]); }); });
       pp('badge').forEach(function (el) { el.hidden = !f.badge; });
       pp('img').forEach(function (img) { img.src = s.img; img.alt = s.name + ' ' + state.g + ' g pack'; });
+      $$('[data-pp-zoom]').forEach(function (b) { b.setAttribute('data-lightbox', s.img); b.setAttribute('data-caption', s.name + ' ' + state.g + ' g'); });
       pp('stick').forEach(function (img) { img.src = f.img.stick; });
       pp('orb').forEach(function (img) { img.src = f.img.orb; img.alt = f.ingredient; });
       pp('ingredient-img').forEach(function (img) { img.src = 'assets/img/ingredients/' + f.img.orb.split('/').pop(); img.alt = f.ingredient; });

@@ -1,2 +1,75 @@
-<!--{"title": "Shop · ABIN Kali Kali", "description": "Kali Kali crunchy corn sticks by ABIN Snack Food.", "bodyClass": "page-shop"}-->
-<section class="section"><div class="wrap"><h1 class="d-1">Shop</h1></div></section>
+<!--{"title": "Shop Kali Kali corn sticks · ABIN", "description": "Shop Kali Kali crunchy corn sticks: Spicy, Cheese, Original and Seaweed in 30 g and 60 g packs, plus the Variety 4-pack. Order on WhatsApp or Shopee.", "bodyClass": "page-shop", "scripts": ["scenes"]}-->
+<section class="shop-hero" aria-labelledby="shop-title">
+  <div class="wrap">
+    <div class="shop-hero__card dots">
+      <div class="shop-hero__copy">
+        <h1 class="d-1" id="shop-title" data-split>4 flavours. 1 crunch.</h1>
+        <p class="lead">Pick your pack: 30 g for the lunchbox, 60 g to share, or the Variety 4-pack when you can't choose. Fill your bag, then order on WhatsApp or Shopee.</p>
+        <ul class="shop-hero__chips">
+          <li class="chip"><img src="assets/img/certs/halal.webp" alt="" width="300" height="300">Halal JAKIM</li>
+          <li class="chip"><i data-icon="leaf"></i>Plant-based</li>
+          <li class="chip"><i data-icon="wheat-off"></i>Gluten-free</li>
+          <li class="chip"><i data-icon="flask-off"></i>No preservatives</li>
+        </ul>
+      </div>
+      <div class="shop-hero__art">
+        <button class="shop-hero__variety" type="button" data-quick="variety-4" aria-label="Quick view: Variety 4-pack"><img src="assets/img/packs/variety.webp" alt="The four Kali Kali 30 g packs fanned out: Spicy, Cheese, Original and Seaweed" width="1700" height="1240"></button>
+        <img class="shop-hero__stick shop-hero__stick--1" src="assets/img/sticks/stick-spicy.webp" alt="" data-float="12">
+        <img class="shop-hero__stick shop-hero__stick--2" src="assets/img/sticks/stick-cheese.webp" alt="" data-float="16">
+        <img class="shop-hero__stick shop-hero__stick--3" src="assets/img/sticks/stick-seaweed.webp" alt="" data-float="10">
+        <span class="shop-hero__badge" data-float="8"><b>RM 8.90</b>for 60 g</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop section" aria-labelledby="grid-title">
+  <div class="wrap">
+    <div class="shop__bar" data-filters="#shop-grid">
+      <h2 class="sr" id="grid-title">All Kali Kali products</h2>
+      <div class="shop__filters" role="group" aria-label="Show">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="spicy" aria-pressed="false"><i data-icon="flame"></i>Spicy</button>
+        <button class="chip" type="button" data-filter="mild" aria-pressed="false">Not spicy</button>
+        <button class="chip" type="button" data-filter="vegan" aria-pressed="false"><i data-icon="leaf"></i>Vegan-friendly</button>
+        <button class="chip" type="button" data-filter="30" aria-pressed="false">30 g</button>
+        <button class="chip" type="button" data-filter="60" aria-pressed="false">60 g</button>
+        <button class="chip" type="button" data-filter="bundle" aria-pressed="false"><i data-icon="gift"></i>Bundles</button>
+      </div>
+      <div class="shop__sort">
+        <label for="shop-sort">Sort by</label>
+        <select id="shop-sort" data-sort>
+          <option value="popular">Popular</option>
+          <option value="price-asc">Price, low to high</option>
+          <option value="price-desc">Price, high to low</option>
+        </select>
+      </div>
+      <p class="shop__count" data-count-shown aria-live="polite">9 products</p>
+    </div>
+    <div class="pgrid pgrid--shop" id="shop-grid" data-products="all"></div>
+
+    <aside class="trade-card" aria-labelledby="trade-card-title">
+      <div class="trade-card__art"><img src="assets/img/channels/convenience.webp" alt="Kali Kali packs on a Malaysian store shelf" width="1200" height="900" loading="lazy"></div>
+      <div class="trade-card__body">
+        <h2 class="d-3" id="trade-card-title">Buying for a shop?</h2>
+        <p>30 g packs come 36 to a carton with an 18-month shelf life and an EAN-13 barcode on every pack. Tell us your store and we will send trade prices.</p>
+        <a class="btn btn--blue" href="contact.html#wholesale"><i data-icon="store"></i>Ask for trade prices</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="howto section" aria-labelledby="howto-title">
+  <div class="wrap">
+    <header class="sec-head">
+      <h2 class="d-1" id="howto-title" data-split>How ordering works</h2>
+      <p class="lead">No account, no checkout forms. Your order goes straight to the ABIN team on WhatsApp.</p>
+    </header>
+    <ol class="steps">
+      <li class="step" data-pop><span class="step__n">1</span><h3 class="h-card">Fill your bag</h3><p>Pick flavours and sizes. Your bag remembers them on this device.</p></li>
+      <li class="step" data-pop><span class="step__n">2</span><h3 class="h-card">Send it on WhatsApp</h3><p>Tap "Order on WhatsApp" and your order arrives as a ready-made message.</p></li>
+      <li class="step" data-pop><span class="step__n">3</span><h3 class="h-card">Pay and snack</h3><p>ABIN confirms the total, payment and delivery or pick-up with you in the chat.</p></li>
+    </ol>
+    <p class="howto__alt">Prefer a marketplace? <a class="link" href="https://shopee.com.my/abin_snack" target="_blank" rel="noopener"><i data-icon="shopee"></i>Shop ABIN on Shopee</a></p>
+  </div>
+</section>

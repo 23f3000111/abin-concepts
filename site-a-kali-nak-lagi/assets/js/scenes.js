@@ -136,7 +136,7 @@
       if (!cards.length) return;
       gsap.from(cards, { y: 70, autoAlpha: 0, rotation: function (i) { return i % 2 ? 3 : -3; }, duration: 0.9, ease: 'back.out(1.5)', stagger: 0.08, scrollTrigger: { trigger: root, start: 'top 85%', once: true } });
     };
-    $$('[data-products="featured"]').forEach(pcards);
+    $$('[data-products], [data-pp-others]').forEach(pcards);
   };
 
   var boot = function () {
