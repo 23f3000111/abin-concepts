@@ -84,6 +84,9 @@
     if (A.lenis) A.lenis.scrollTo(el, { offset: offset == null ? -110 : offset, duration: 1.2 });
     else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   };
+  var setHeaderH = function () { var h = $('.site-header'); if (h) html.style.setProperty('--header-h', h.offsetHeight + 'px'); };
+  setHeaderH();
+  window.addEventListener('resize', setHeaderH);
   var onScroll = function () { html.classList.toggle('is-scrolled', window.scrollY > 40); };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -296,6 +299,43 @@
     }
   };
 
+
+  /* ------------------------------------------------------- hero entrance */
+  var heroIn = function () {
+    var hero = $('.hero');
+    if (!hero || !hasGSAP || reduce) return;
+    var tl = gsap.timeline();
+    var title = $('.hero__title');
+    if (window.SplitText && title) {
+      var split = new SplitText(title, { type: 'chars', charsClass: 'ltr' });
+      tl.from(split.chars, { yPercent: 120, scale: 0.3, rotate: function () { return gsap.utils.random(-30, 30); }, opacity: 0, duration: 1.1, ease: 'elastic.out(1, .5)', stagger: 0.035 }, 0.15);
+    }
+    tl.from('.hero__pill', { y: 26, opacity: 0, duration: 0.6, ease: 'back.out(2)' }, 0)
+      .from('.hero__note', { scale: 0, rotate: -12, opacity: 0, duration: 0.8, ease: 'back.out(2.6)' }, 0.75)
+      .from('.hero__lead, .hero__cta > *, .hero__trust > *', { y: 24, opacity: 0, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.06 }, 0.85)
+      .from('.stage__blob', { scale: 0.2, opacity: 0, duration: 1.3, ease: 'elastic.out(1, .6)' }, 0.1)
+      .from('.stage__ring', { opacity: 0, scale: 0.85, duration: 1 }, 0.5)
+      .from('.stage__pack', { y: 240, opacity: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.12 }, 0.35)
+      .from('.orb', { scale: 0, opacity: 0, duration: 0.8, ease: 'back.out(2.4)', stagger: 0.1 }, 1)
+      .from('.stage__badge', { scale: 0, rotate: -90, duration: 0.9, ease: 'back.out(2)' }, 1.3)
+      .from('.hero__hint', { opacity: 0, y: 12, duration: 0.6 }, 1.8);
+    $$('.stage__pack').forEach(function (p, i) { gsap.to(p, { y: i % 2 ? -10 : -16, duration: 2.4 + i * 0.35, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.8 + i * 0.2 }); });
+    $$('.orb').forEach(function (o, i) { gsap.to(o, { y: i % 2 ? 12 : -12, rotate: i % 2 ? 5 : -5, duration: 2.2 + i * 0.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 }); });
+    if (fine) {
+      var layers = [['.stage__blob', 14], ['.stage__pack--1, .stage__pack--3', 26], ['.stage__pack--2, .stage__pack--4', 18], ['.orb', -30], ['.stage__badge', -16]];
+      var movers = layers.map(function (l) {
+        var els = $$(l[0], hero);
+        return { d: l[1], x: gsap.quickTo(els, 'x', { duration: 0.9, ease: 'power3' }), yp: gsap.quickTo(els, 'yPercent', { duration: 0.9, ease: 'power3' }) };
+      });
+      hero.addEventListener('pointermove', function (e) {
+        var nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
+        movers.forEach(function (m) { m.x(nx * m.d); m.yp(ny * m.d * 0.1); });
+      });
+    }
+    gsap.to('.hero__copy', { yPercent: 10, opacity: 0.25, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero__stage', { yPercent: -8, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+  };
+
   /* --------------------------------------------------------- Kali mascot */
   var kali = $('.kali'), say = kali && $('[data-kali-say]', kali), sayTimer = 0;
   var pick = function (arr) { return arr[Math.floor(Math.random() * arr.length)]; };
@@ -348,6 +388,7 @@
   counters();
   ambient();
   fx.ready.then(function () {
+    heroIn();
     html.dispatchEvent(new CustomEvent('abin:ready'));
     if (hasGSAP) ScrollTrigger.refresh();
   });
