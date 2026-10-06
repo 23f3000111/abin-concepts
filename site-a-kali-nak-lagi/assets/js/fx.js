@@ -376,7 +376,12 @@
         gsap.to($('.kali__crumbs', kali), { y: -3, duration: 0.6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
       });
     }
-    setTimeout(function () { if (!A.ui.current()) kaliSay(TIPS[0], 4200, true); tipIndex = 1; }, 9000);
+    setTimeout(function () {
+      if (A.ui.current()) return;
+      var hero = $('.hero');
+      kaliSay(hero && window.scrollY < innerHeight * 0.6 ? TIPS[0] : 'Tap me for snack tips!', 4200, true);
+      tipIndex = 1;
+    }, 9000);
   }
   document.addEventListener('abin:quiz', function (e) {
     var f = A.data.flavours.filter(function (x) { return x.id === e.detail.flavour; })[0];

@@ -103,7 +103,7 @@
 .socials a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--paper); box-shadow: var(--hard-s); transition: translate .45s var(--jelly), rotate .45s var(--jelly); }
 .socials a:hover { translate: 0 -3px; rotate: -8deg; }
 .socials .icon { width: 19px; height: 19px; }
-.footer__word { position: relative; margin-top: 48px; font: 400 clamp(90px, 21.5vw, 360px)/.78 var(--f-display); text-transform: uppercase; letter-spacing: -.005em; white-space: nowrap; color: var(--ink); text-align: center; user-select: none; }
+.footer__word { position: relative; margin: 48px 0 0; padding-bottom: .06em; font: 400 clamp(90px, 21.5vw, 360px)/.78 var(--f-display); text-transform: uppercase; letter-spacing: -.005em; white-space: nowrap; color: var(--ink); text-align: center; user-select: none; }
 .footer__word span { display: inline-block; transition: translate .5s var(--jelly), rotate .5s var(--jelly), color .2s; }
 .footer__word span:hover { translate: 0 -12px; rotate: -4deg; color: var(--orange); }
 .footer__bottom { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; padding: 22px 0 28px; border-top: 2.5px solid var(--ink); font-size: 14px; }
