@@ -1,0 +1,37 @@
+<template id="tpl-card">
+  <article class="pcard">
+    <span class="pcard__badge" data-slot="badge" hidden></span>
+    <button class="pcard__art" type="button" data-quick aria-label="Quick view">
+      <span class="pcard__blob" aria-hidden="true"></span>
+      <img data-slot="img" src="assets/img/packs/spicy-60-sm.webp" alt="" width="390" height="560" loading="lazy">
+    </button>
+    <div class="pcard__body">
+      <p class="pcard__bm" data-slot="bm"></p>
+      <h3 class="pcard__name"><a data-slot="link" href="product.html"><span data-slot="name"></span></a></h3>
+      <p class="pcard__tag" data-slot="tagline"></p>
+      <p class="pcard__meta"><span data-slot="kcal"></span><span data-slot="diet"></span></p>
+      <div class="sizes pcard__sizes" data-size role="group" aria-label="Pack size"><button type="button" data-g="30">30 g</button><button type="button" data-g="60">60 g</button></div>
+      <div class="pcard__buy">
+        <strong class="pcard__price" data-slot="price"></strong>
+        <button class="add-btn" type="button" data-add aria-label="Add to bag"><i data-icon="plus"></i></button>
+      </div>
+    </div>
+  </article>
+</template>
+
+<template id="tpl-bag-line">
+  <li class="bag-line">
+    <img class="bag-line__img" data-slot="img" src="assets/img/packs/spicy-30-sm.webp" alt="" width="390" height="560">
+    <div class="bag-line__info"><strong data-slot="name"></strong><span><span data-slot="label"></span><span data-slot="unit"></span></span></div>
+    <div class="bag-line__qty"><button type="button" data-bag-step="-1" aria-label="One less"><i data-icon="minus"></i></button><span data-slot="qty">1</span><button type="button" data-bag-step="1" aria-label="One more"><i data-icon="plus"></i></button></div>
+    <strong class="bag-line__total" data-slot="total"></strong>
+    <button class="bag-line__x" type="button" data-bag-remove aria-label="Remove from bag"><i data-icon="close"></i></button>
+  </li>
+</template>
+
+<template id="tpl-faq">
+  <details class="faq-item" data-animate>
+    <summary><span class="faq-item__q" data-slot="q"></span><span class="faq-item__icon" aria-hidden="true"><i data-icon="plus"></i></span></summary>
+    <div class="faq-item__a"><p data-slot="a"></p><p class="faq-item__cat" data-slot="cat"></p></div>
+  </details>
+</template>

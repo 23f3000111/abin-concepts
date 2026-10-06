@@ -87,6 +87,7 @@
         if (q) { if ('value' in q && q.tagName === 'INPUT') q.value = l.qty; else text(q, l.qty); }
         list.appendChild(node);
       });
+      if (A.hydrateIcons) A.hydrateIcons(list);
     }
     text($('[data-bag-subtotal]', bag), core.money(core.cartSubtotal(lines)));
     var hasPlaceholder = lines.some(function (l) { return l.placeholder; });

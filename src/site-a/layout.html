@@ -1,15 +1,46 @@
 <!doctype html>
-<html lang="en" class="no-js" data-page="{{page}}">
+<html lang="en" class="no-js" data-page="{{page}}" data-store="abin-a-bag" data-trade-hash="wholesale">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
+<meta name="theme-color" content="#FFD21E">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:image" content="assets/img/posters/four-flavours-en.webp">
+<link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/chrome.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script>
+(function () {
+  var h = document.documentElement, reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  h.classList.remove('no-js'); h.classList.add('js');
+  try {
+    if (!reduce && !sessionStorage.getItem('abin-a-seen')) h.classList.add('is-loading');
+    if (!reduce && sessionStorage.getItem('abin-a-wipe')) h.classList.add('is-arriving');
+  } catch (e) { /* storage blocked */ }
+  setTimeout(function () { if (!window.__abinFx) { h.classList.add('fx-failed'); h.classList.remove('is-loading', 'is-arriving'); } }, 4000);
+}());
+</script>
 </head>
 <body class="{{bodyClass}}">
+<a class="skip" href="#main">Skip to content</a>
+{{> loader}}
+{{> header}}
+{{> menu}}
 <main id="main">
 {{content}}
 </main>
+{{> footer}}
+{{> bag}}
+{{> dialogs}}
+{{> mascot}}
+{{> templates}}
+<div class="wipe" aria-hidden="true"><img src="assets/img/brand/logo-sm.webp" alt=""></div>
 {{> scripts}}
 {{scripts}}
 </body>

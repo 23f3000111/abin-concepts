@@ -1,0 +1,29 @@
+<dialog class="dlg dlg--drawer" id="bag" aria-labelledby="bag-title">
+  <div class="drawer" tabindex="-1" autofocus>
+    <header class="drawer__head">
+      <h2 id="bag-title">Your bag</h2>
+      <span class="drawer__count"><span data-bag-count>0</span> items</span>
+      <button class="icon-btn" type="button" data-close aria-label="Close your bag"><i data-icon="close"></i></button>
+    </header>
+    <div class="drawer__body">
+      <div class="drawer__empty" data-bag-empty>
+        <svg viewBox="0 0 80 170" aria-hidden="true"><use href="#kali-shape"></use></svg>
+        <h3>Your bag is empty</h3>
+        <p>Pick a flavour and it lands here.</p>
+        <a class="btn btn--orange" href="shop.html"><i data-icon="bag"></i>Shop the crunch</a>
+      </div>
+      <ul class="bag-list" data-bag-list></ul>
+    </div>
+    <footer class="drawer__foot" data-bag-full hidden>
+      <div class="drawer__fields">
+        <div class="field"><label for="bag-name">Your name</label><input id="bag-name" name="bag-name" autocomplete="name"></div>
+        <div class="field"><label for="bag-area">Deliver to</label><input id="bag-area" name="bag-area" placeholder="Town or area"></div>
+      </div>
+      <div class="drawer__total"><span>Subtotal</span><strong data-bag-subtotal>RM 0.00</strong></div>
+      <p class="drawer__note" data-bag-note hidden>*Indicative price. ABIN confirms your total and delivery on WhatsApp.</p>
+      <a class="btn btn--orange btn--block" data-bag-checkout href="https://wa.me/60199761857" target="_blank" rel="noopener"><i data-icon="whatsapp"></i>Order on WhatsApp</a>
+      <a class="btn btn--white btn--block" data-bag-shopee href="https://shopee.com.my/abin_snack" target="_blank" rel="noopener"><i data-icon="shopee"></i>Buy on Shopee instead</a>
+      <button class="link-btn" type="button" data-bag-clear>Empty the bag</button>
+    </footer>
+  </div>
+</dialog>
