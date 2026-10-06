@@ -166,6 +166,43 @@
     });
   };
 
+  /* --------------------------------------------- shop filters + sorting */
+  var filterSkus = function (list, data, filter) {
+    var tags = {};
+    data.flavours.forEach(function (f) { tags[f.id] = f.tags || []; });
+    var test = {
+      spicy: function (s) { return s.kind === 'pack' && tags[s.flavour].indexOf('spicy') > -1; },
+      mild: function (s) { return s.kind === 'pack' && tags[s.flavour].indexOf('mild') > -1; },
+      vegan: function (s) { return s.kind === 'pack' && tags[s.flavour].indexOf('vegan') > -1; },
+      30: function (s) { return s.size === 30; },
+      60: function (s) { return s.size === 60; },
+      bundle: function (s) { return s.kind === 'bundle'; }
+    }[filter];
+    return test ? list.filter(test) : list.slice();
+  };
+  var sortSkus = function (list, mode) {
+    var indexed = list.map(function (s, i) { return { s: s, i: i }; });
+    var dir = mode === 'price-asc' ? 1 : mode === 'price-desc' ? -1 : 0;
+    indexed.sort(function (a, b) { return (dir && (a.s.price - b.s.price) * dir) || a.i - b.i; });
+    return indexed.map(function (x) { return x.s; });
+  };
+
+  /* ---------------------------------- trade enquiry list (shop -> contact) */
+  var enquiryParse = function (str, validIds) {
+    var out = [];
+    String(str || '').split(',').forEach(function (part) {
+      var m = part.trim().match(/^([a-z0-9-]+):(\d+)$/);
+      if (!m || (validIds && validIds.indexOf(m[1]) === -1) || Number(m[2]) < 1) return;
+      var hit = out.filter(function (x) { return x.id === m[1]; })[0];
+      if (hit) hit.cartons = Math.min(999, hit.cartons + Number(m[2]));
+      else out.push({ id: m[1], cartons: Math.min(999, Number(m[2])) });
+    });
+    return out;
+  };
+  var enquiryString = function (list) {
+    return (list || []).map(function (x) { return x.id + ':' + x.cartons; }).join(',');
+  };
+
   /* ------------------------------------------------ product page + quiz */
   var resolveProduct = function (search, data) {
     var p = new URLSearchParams(search || ''), f = p.get('f'), s = Number(p.get('s'));
@@ -188,6 +225,7 @@
     cartAdd: cartAdd, cartSet: cartSet, cartRemove: cartRemove, cartCount: cartCount, cartParse: cartParse,
     cartLines: cartLines, cartSubtotal: cartSubtotal, waLink: waLink, mailtoLink: mailtoLink,
     orderMessage: orderMessage, tradeMessage: tradeMessage, affiliateMessage: affiliateMessage, helloMessage: helloMessage,
-    normalize: normalize, faqSearch: faqSearch, resolveProduct: resolveProduct, quizResult: quizResult
+    normalize: normalize, faqSearch: faqSearch, resolveProduct: resolveProduct, quizResult: quizResult,
+    filterSkus: filterSkus, sortSkus: sortSkus, enquiryParse: enquiryParse, enquiryString: enquiryString
   };
 }(typeof window !== 'undefined' ? window : globalThis));

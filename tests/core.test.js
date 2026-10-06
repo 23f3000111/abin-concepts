@@ -158,3 +158,38 @@ test('quizResult picks the highest score with flavour order as the tie-break', (
   assert.equal(core.quizResult([{ cheese: 2 }, { original: 2 }], data), 'cheese');
   assert.equal(core.quizResult([], data), 'spicy');
 });
+
+test('filterSkus narrows the shop by flavour, diet, size and bundle', () => {
+  const list = core.skus(data);
+  const n = (f) => core.filterSkus(list, data, f).length;
+  assert.equal(n('all'), 9);
+  assert.equal(n('spicy'), 2);
+  assert.equal(n('mild'), 6);
+  assert.equal(n('vegan'), 4);
+  assert.equal(n('30'), 4);
+  assert.equal(n('60'), 4);
+  assert.equal(n('bundle'), 1);
+  assert.equal(n('nonsense'), 9);
+  assert.ok(core.filterSkus(list, data, 'vegan').every((s) => ['original', 'seaweed'].includes(s.flavour)));
+});
+
+test('sortSkus orders by price both ways and keeps the original order on ties', () => {
+  const list = core.skus(data);
+  const asc = core.sortSkus(list, 'price-asc').map((s) => s.price);
+  assert.deepEqual(asc, [...asc].sort((a, b) => a - b));
+  const desc = core.sortSkus(list, 'price-desc');
+  assert.equal(desc[0].id, 'variety-4');
+  assert.deepEqual(core.sortSkus(list, 'price-asc').filter((s) => s.price === 4.5).map((s) => s.id),
+    ['spicy-30', 'cheese-30', 'original-30', 'seaweed-30']);
+  assert.deepEqual(core.sortSkus(list, 'popular').map((s) => s.id), list.map((s) => s.id));
+  assert.notEqual(core.sortSkus(list, 'price-asc'), list, 'returns a new array');
+});
+
+test('trade enquiry list round-trips through the contact page URL and drops junk', () => {
+  const ids = core.skus(data).map((s) => s.id);
+  const list = core.enquiryParse('spicy-30:5,cheese-30:2,ghost:1,seaweed-60:0,original-30:x,cheese-30:1,spicy-60:5000', ids);
+  assert.deepEqual(list, [{ id: 'spicy-30', cartons: 5 }, { id: 'cheese-30', cartons: 3 }, { id: 'spicy-60', cartons: 999 }]);
+  assert.equal(core.enquiryString(list), 'spicy-30:5,cheese-30:3,spicy-60:999');
+  assert.deepEqual(core.enquiryParse('', ids), []);
+  assert.deepEqual(core.enquiryParse(null, ids), []);
+});
