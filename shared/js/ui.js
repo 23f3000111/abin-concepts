@@ -264,5 +264,43 @@
     }
   });
 
+
+  /* --------------------------------------------------------------- tabs */
+  /* [data-tabs] > [role=tablist] > [role=tab][aria-controls=<panel id>]; a URL hash equal to a panel id (or the
+     tab's data-hash) opens that tab, including same-page links that never fire hashchange. */
+  $$('[data-tabs]').forEach(function (root) {
+    var tabs = $$('[role="tab"]', root);
+    var show = function (tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab, panel = doc.getElementById(t.getAttribute('aria-controls'));
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+      root.dispatchEvent(new CustomEvent('abin:tab', { bubbles: true, detail: { id: tab.getAttribute('aria-controls') } }));
+    };
+    var byHash = function (h) { return tabs.filter(function (t) { return t.getAttribute('aria-controls') === h || t.getAttribute('data-hash') === h; })[0]; };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        show(tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length], true);
+      });
+    });
+    var fromHash = function () { var t = byHash(location.hash.slice(1)); if (t) show(t); };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+    doc.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href*="#"]');
+      if (!a) return;
+      var url = new URL(a.href, location.href);
+      if (url.pathname !== location.pathname) return;
+      var t = byHash(url.hash.slice(1));
+      if (t) show(t);
+    }, true);
+  });
+
   $$('[data-year]').forEach(function (el) { text(el, new Date().getFullYear()); });
 }());

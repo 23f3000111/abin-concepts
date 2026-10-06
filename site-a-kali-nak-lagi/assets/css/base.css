@@ -44,6 +44,8 @@
   --topbar-h: 38px;
 }
 
+@media (min-width: 1600px) { :root { --wrap: 1380px; } }
+
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 120px; }
 html.lenis, html.lenis body { height: auto; }

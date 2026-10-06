@@ -139,10 +139,46 @@
     $$('[data-products], [data-pp-others]').forEach(pcards);
   };
 
+  /* --------------------------------------------- inner-page moments */
+  var inner = function () {
+    if (!hasGSAP || reduce) return;
+    var ph = $('.phero__title');
+    if (ph) {
+      gsap.from($$('.phero__w', ph), { yPercent: 110, rotation: function () { return gsap.utils.random(-14, 14); }, autoAlpha: 0, duration: 1, ease: 'elastic.out(1, .55)', stagger: 0.08, delay: 0.1 });
+      gsap.from('.phero__pack img', { scale: 0, rotation: -200, duration: 1.2, ease: 'back.out(1.8)', delay: 0.35 });
+      gsap.from('.phero__note', { autoAlpha: 0, y: 20, duration: 0.6, delay: 0.8 });
+    }
+    var packs = $$('.bhero__packs a');
+    if (packs.length) gsap.from(packs, { y: 220, autoAlpha: 0, duration: 1, ease: 'back.out(1.4)', stagger: 0.07, delay: 0.3 });
+    $$('.claims').forEach(function (root) {
+      root.addEventListener('abin:tab', function (e) {
+        var panel = document.getElementById(e.detail.id);
+        if (!panel) return;
+        gsap.fromTo(panel, { scale: 0.94, rotation: -1.5 }, { scale: 1, rotation: 0, duration: 0.7, ease: 'elastic.out(1, .6)' });
+        gsap.fromTo(panel.querySelectorAll('.claim__copy > *, .claim__img'), { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: 'back.out(1.7)', stagger: 0.06 });
+        if (A.fx && A.fx.pop) A.fx.pop(1.05);
+      });
+    });
+    var path = $('.cob__path');
+    if (path) {
+      gsap.fromTo(path, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', ease: 'none', scrollTrigger: { trigger: '.cob__track', start: 'top 75%', end: 'bottom 55%', scrub: true } });
+    }
+    var bars = $$('[data-bar]');
+    if (bars.length) gsap.from(bars, { scaleX: 0, duration: 1.2, ease: 'elastic.out(1, .7)', stagger: 0.1, scrollTrigger: { trigger: '.kcal__bars', start: 'top 80%', once: true } });
+    var bowl = $('.fhero__bowl');
+    if (bowl) gsap.from(bowl, { scale: 0.4, rotation: -120, autoAlpha: 0, duration: 1.2, ease: 'back.out(1.6)', delay: 0.2 });
+    $$('.fhero__stick, .phero__stick, .shop-hero__stick').forEach(function (s, i) {
+      gsap.from(s, { scale: 0, autoAlpha: 0, duration: 0.9, ease: 'back.out(2.2)', delay: 0.5 + i * 0.1 });
+    });
+    var crew = $('.crew__photo');
+    if (crew) gsap.from($$('.crew__sticker', crew), { scale: 0, rotation: -30, duration: 0.8, ease: 'back.out(2.4)', stagger: 0.15, scrollTrigger: { trigger: crew, start: 'top 75%', once: true } });
+  };
+
   var boot = function () {
     flavScene();
     clock();
     extras();
+    inner();
     if (hasGSAP) ScrollTrigger.refresh();
   };
   if (A.fx && A.fx.ready) A.fx.ready.then(boot); else boot();
