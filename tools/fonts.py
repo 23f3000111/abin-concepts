@@ -9,8 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36'
 FAMILIES = {
     'site-a-kali-nak-lagi': ['Anton', 'Rubik:ital,wght@0,300..800;1,300..800', 'Caveat+Brush'],
-    'site-b-jagung-rangup': ['Archivo:wdth,wght@62..125,100..900', 'Geist:wght@100..900', 'Geist+Mono:wght@100..900',
-                             'Instrument+Serif:ital@0;1'],
+    'site-b-jagung-rangup': ['Archivo:wdth,wght@62..125,100..900', 'Geist:wght@100..900', 'Geist+Mono:wght@100..900'],
 }
 KEEP = {'latin', 'latin-ext'}
 

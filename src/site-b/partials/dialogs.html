@@ -1,0 +1,62 @@
+<dialog class="dlg dlg--quick" id="dlg-quick" aria-labelledby="q-title">
+  <div class="quick" tabindex="-1" autofocus>
+    <button class="icon-btn dlg__x" type="button" data-close aria-label="Close"><i data-icon="close"></i></button>
+    <div class="quick__art" data-zoom="2.4">
+      <img data-q="img" src="assets/img/packs/spicy-60.webp" alt="" width="768" height="1100">
+      <span class="quick__badge tag tag--abin" data-q="badge" hidden></span>
+      <span class="zoom-lens" aria-hidden="true"></span>
+      <p class="quick__hint"><i data-icon="zoom"></i>Hover to read the label</p>
+    </div>
+    <div class="quick__body">
+      <p class="quick__bm" data-q="bm"></p>
+      <h2 class="quick__name" id="q-title" data-q="name"></h2>
+      <p class="quick__tagline" data-q="tagline"></p>
+      <p class="quick__blurb" data-q="blurb"></p>
+      <ul class="quick__facts">
+        <li class="tag"><i data-icon="flame"></i><span data-q="kcal"></span></li>
+        <li class="tag"><i data-icon="leaf"></i><span data-q="diet"></span></li>
+        <li class="tag"><i data-icon="halal"></i>Halal JAKIM</li>
+      </ul>
+      <div class="sizes" data-q-size role="group" aria-label="Pack size"><button type="button" data-g="30">30 g</button><button type="button" data-g="60">60 g</button></div>
+      <div class="quick__buy">
+        <div class="qty"><button type="button" data-q-step="-1" aria-label="One less"><i data-icon="minus"></i></button><input data-q-qty type="number" min="1" max="99" value="1" aria-label="Quantity"><button type="button" data-q-step="1" aria-label="One more"><i data-icon="plus"></i></button></div>
+        <strong class="quick__price" data-q="price"></strong>
+      </div>
+      <p class="quick__note" data-q-note hidden>*Indicative price, confirmed with you on WhatsApp.</p>
+      <div class="quick__ctas">
+        <button class="btn" type="button" data-q-add><i data-icon="bag"></i>Add to bag</button>
+        <a class="btn btn--white" data-q-shopee href="https://shopee.com.my/abin_snack" target="_blank" rel="noopener"><i data-icon="shopee"></i>Shopee</a>
+      </div>
+      <a class="link" data-q-link href="product.html">See full details<i data-icon="arrow-right"></i></a>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg dlg--info" id="dlg-info" aria-labelledby="i-title">
+  <div class="info" tabindex="-1" autofocus>
+    <button class="icon-btn dlg__x" type="button" data-close aria-label="Close"><i data-icon="close"></i></button>
+    <div class="info__art">
+      <span class="info__icon" data-i="icon" hidden></span>
+      <img data-i="img" src="assets/img/brand/logo-sm.webp" alt="" hidden>
+    </div>
+    <p class="info__kicker" data-i="kicker"></p>
+    <h2 class="info__title" id="i-title" data-i="title"></h2>
+    <p class="info__body" data-i="body"></p>
+    <div class="info__ctas">
+      <a class="btn" data-i="cta" href="index.html" hidden><span data-i="cta-label">More</span></a>
+      <button class="btn btn--white" type="button" data-i="video" data-lightbox="assets/video/reel-1.mp4" hidden><i data-icon="play"></i>Watch the ad</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg dlg--lightbox" id="dlg-lightbox" aria-label="Photo and video viewer">
+  <div class="lb" tabindex="-1" autofocus>
+    <button class="icon-btn dlg__x" type="button" data-close aria-label="Close"><i data-icon="close"></i></button>
+    <button class="icon-btn lb__nav" type="button" data-lb-prev aria-label="Previous" hidden><i data-icon="chevron-left"></i></button>
+    <figure class="lb__figure">
+      <div class="lb__media" data-lb-media></div>
+      <figcaption class="lb__caption"><span data-lb-caption></span><span class="lb__count" data-lb-count></span></figcaption>
+    </figure>
+    <button class="icon-btn lb__nav" type="button" data-lb-next aria-label="Next" hidden><i data-icon="chevron-right"></i></button>
+  </div>
+</dialog>

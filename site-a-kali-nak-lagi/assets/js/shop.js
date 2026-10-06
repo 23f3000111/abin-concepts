@@ -67,6 +67,7 @@
   function renderBag() {
     var count = core.cartCount(items), lines = A.bag.lines();
     $$('[data-bag-count]').forEach(function (el) { text(el, count); el.toggleAttribute('data-empty', !count); });
+    $$('[data-bag-items]').forEach(function (el) { text(el, count + (count === 1 ? ' item' : ' items')); });
     var bag = $('#bag');
     if (!bag) return;
     var list = $('[data-bag-list]', bag), tpl = $('#tpl-bag-line');
