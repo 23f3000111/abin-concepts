@@ -259,6 +259,33 @@
     if (pack) gsap.fromTo(pack, { yPercent: 55 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: mark, start: 'top bottom', end: 'bottom bottom', scrub: 0.6 } });
   };
 
+  /* ------------------------------------- page colour: [data-bg] sections */
+  /* every section in <main> may name a canvas colour (data-bg="flavour" follows the picked flavour); the body
+     background morphs to the colour of the section under the middle of the viewport */
+  var bgOf = function (sec) {
+    var v = sec && sec.getAttribute('data-bg');
+    return v === 'flavour' ? 'var(--flavour-tint, var(--c-tint, var(--sky)))' : (v || 'var(--sky)');
+  };
+  fx.setBg = function (v) { html.style.setProperty('--page-bg', v); };
+  var pageBg = function () {
+    var secs = $$('main > section');
+    if (!secs.length) return;
+    var at = function () {
+      var mid = innerHeight * 0.5, cur = secs[0];
+      secs.forEach(function (sec) { var r = sec.getBoundingClientRect(); if (r.top <= mid) cur = sec; });
+      return cur;
+    };
+    fx.setBg(bgOf(at()));
+    if (!hasGSAP) return;
+    secs.forEach(function (sec) {
+      ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%', onToggle: function (self) { if (self.isActive && !sec.hasAttribute('data-bg-own')) fx.setBg(bgOf(sec)); } });
+    });
+  };
+  pageBg();
+  Promise.all([fx.ready, new Promise(function (r) { window.addEventListener('load', r); })]).then(function () {
+    setTimeout(function () { html.classList.remove('bg-instant'); }, 120);
+  });
+
   /* ---------------------------------------------------------------- boot */
   fontsReady.then(function () { reveals(); footer(); if (hasGSAP) ScrollTrigger.refresh(); });
   counters();

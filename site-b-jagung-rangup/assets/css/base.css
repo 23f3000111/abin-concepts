@@ -1,14 +1,17 @@
 /* ABIN · Concept B "Jagung Rangup" · base: tokens, reset, type, buttons.
-   ABIN's shopfront palette: white and ice, sign navy for ink, sign blue for links, ABIN yellow as the one sharp
-   accent. Flavour colours appear only as soft tints behind packs. Archivo (wide) for display, Geist for text,
-   Geist Mono only for real data (barcodes, nutrition, times, specs). */
+   ABIN's shopfront palette: a sky-blue canvas taken from their blue signboard, sign navy for ink, sign blue for
+   links, ABIN yellow as the one sharp accent. The canvas morphs into flavour tints section by section (fx.js reads
+   [data-bg]); white is kept for cards and panels. Archivo (wide) for display, Geist for text, Geist Mono only for
+   real data (barcodes, nutrition, times, specs). */
 :root {
   --white: #FFFFFF;
+  --sky: #E6EDFA;
+  --sky-2: #D6E1F5;
   --ice: #EEF2F9;
   --ice-2: #E2E8F3;
   --navy: #13234A;
-  --navy-2: #45517A;
-  --navy-3: #7883A3;
+  --navy-2: #42507A;
+  --navy-3: #657094;
   --line: #D3DAE8;
   --blue: #1F45C8;
   --abin: #FFD21E;
@@ -39,11 +42,13 @@
 @media (min-width: 1600px) { :root { --wrap: 1440px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 100px; }
+html[data-page="index"] { --flavour-tint: #F6DCD6; }
+.bg-instant body, .bg-instant .site-header { transition: none !important; }
+html { --page-bg: var(--sky); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 100px; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
-body { margin: 0; font: 400 16.5px/1.62 var(--f-body); color: var(--navy); background: var(--white); overflow-x: clip; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; font: 400 16.5px/1.62 var(--f-body); color: var(--navy); background: var(--page-bg); transition: background-color .9s var(--ease); overflow-x: clip; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 /* lock the viewport only: overflow on body would make it a scroll container and unstick the header */
 html.is-locked { overflow: hidden; }
 img, svg, video, canvas { display: block; max-width: 100%; }
@@ -62,11 +67,6 @@ ul[class], ol[class] { list-style: none; padding: 0; }
 
 .wrap { width: min(100% - var(--gut) * 2, var(--wrap)); margin-inline: auto; }
 .section { position: relative; padding-block: clamp(88px, 11vw, 160px); }
-.grid-bg {
-  background-image: linear-gradient(var(--ice-2) 1px, transparent 1px), linear-gradient(90deg, var(--ice-2) 1px, transparent 1px);
-  background-size: 64px 64px;
-  background-position: center top;
-}
 
 /* -------------------------------------------------------------- type */
 .wordmark { font-family: var(--f-display); font-weight: 800; font-stretch: 125%; text-transform: uppercase; line-height: .8; letter-spacing: -.035em; }

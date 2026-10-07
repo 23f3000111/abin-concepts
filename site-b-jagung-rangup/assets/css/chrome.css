@@ -2,7 +2,7 @@
 
 /* ------------------------------------------------------------- header */
 .site-header { position: fixed; z-index: 60; top: 0; left: 0; right: 0; height: var(--header-h); transition: transform .5s var(--ease), background-color .35s, box-shadow .35s; }
-.is-scrolled .site-header { background: rgba(255, 255, 255, .86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.is-scrolled .site-header { background: color-mix(in srgb, var(--page-bg) 84%, transparent); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 rgba(19, 35, 74, .1); transition: transform .5s var(--ease), background-color .9s var(--ease), box-shadow .35s; }
 .is-hidden-header .site-header { transform: translateY(-100%); }
 .is-locked .site-header, .is-menu-open .site-header { transform: none; }
 .nav { display: flex; align-items: center; gap: 28px; height: 100%; }
@@ -60,7 +60,7 @@
 .footer__certs img { height: 36px; width: auto; }
 
 /* ------------------------------------------------------------ pop-ups */
-.dlg { position: fixed; inset: 0; z-index: 100; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: var(--gut); border: 0; background: rgba(238, 242, 249, .78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--navy); overflow-y: auto; opacity: 0; transition: opacity .35s var(--ease); }
+.dlg { position: fixed; inset: 0; z-index: 100; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: var(--gut); border: 0; background: rgba(214, 225, 245, .72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--navy); overflow-y: auto; opacity: 0; transition: opacity .35s var(--ease); }
 .dlg::backdrop { background: transparent; }
 .dlg.is-open { opacity: 1; }
 .dlg[open] { display: grid; place-items: center; }
@@ -110,7 +110,7 @@
 .info__body { color: var(--navy-2); }
 .info__ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
 
-.dlg--lightbox { background: rgba(238, 242, 249, .92); }
+.dlg--lightbox { background: rgba(214, 225, 245, .9); }
 .lb { position: relative; display: flex; align-items: center; justify-content: center; gap: 18px; width: min(1220px, 100%); }
 .lb__figure { display: grid; justify-items: center; gap: 12px; max-width: 100%; }
 .lb__media { display: grid; place-items: center; }

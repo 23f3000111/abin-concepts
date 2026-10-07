@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Questions, answered. · Kali Kali by ABIN</title>
 <meta name="description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#E6EDFA">
 <meta property="og:title" content="Questions, answered. · Kali Kali by ABIN">
 <meta property="og:description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
 <meta property="og:image" content="assets/img/posters/four-flavours-en.webp">
@@ -18,13 +18,13 @@
 <script>
 (function () {
   var h = document.documentElement, reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  h.classList.remove('no-js'); h.classList.add('js');
+  h.classList.remove('no-js'); h.classList.add('js', 'bg-instant');
   try {
     var first = !sessionStorage.getItem('abin-b-seen');
     if (!reduce && (first || sessionStorage.getItem('abin-b-veil'))) h.classList.add('is-veiled');
     if (!reduce && first) h.classList.add('is-first');
   } catch (e) { /* storage blocked */ }
-  setTimeout(function () { if (!window.__abinFx) { h.classList.add('fx-failed'); h.classList.remove('is-veiled', 'is-first'); } }, 4000);
+  setTimeout(function () { if (!window.__abinFx) { h.classList.add('fx-failed'); h.classList.remove('is-veiled', 'is-first', 'bg-instant'); } }, 4000);
 }());
 </script>
 </head>
@@ -74,7 +74,7 @@
 </div>
 
 <main id="main">
-<section class="phero grid-bg">
+<section class="phero">
   <div class="wrap">
     <h1 class="h-xl" data-lines>Questions, answered.</h1>
   </div>
