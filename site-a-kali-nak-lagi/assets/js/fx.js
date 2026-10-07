@@ -313,16 +313,11 @@
     tl.from('.hero__pill', { y: 26, opacity: 0, duration: 0.6, ease: 'back.out(2)' }, 0)
       .from('.hero__note', { scale: 0, rotate: -12, opacity: 0, duration: 0.8, ease: 'back.out(2.6)' }, 0.75)
       .from('.hero__lead, .hero__cta > *, .hero__trust > *', { y: 24, opacity: 0, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.06 }, 0.85)
-      .from('.stage__blob', { scale: 0.2, opacity: 0, duration: 1.3, ease: 'elastic.out(1, .6)' }, 0.1)
-      .from('.stage__ring', { opacity: 0, scale: 0.85, duration: 1 }, 0.5)
-      .from('.stage__pack', { y: 240, opacity: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.12 }, 0.35)
-      .from('.orb', { scale: 0, opacity: 0, duration: 0.8, ease: 'back.out(2.4)', stagger: 0.1 }, 1)
-      .from('.stage__badge', { scale: 0, rotate: -90, duration: 0.9, ease: 'back.out(2)' }, 1.3)
+      .from('.stage__pack', { y: 240, opacity: 0, duration: 1.1, ease: 'back.out(1.3)', stagger: 0.12 }, 0.3)
       .from('.hero__hint', { opacity: 0, y: 12, duration: 0.6 }, 1.8);
     $$('.stage__pack').forEach(function (p, i) { gsap.to(p, { y: i % 2 ? -10 : -16, duration: 2.4 + i * 0.35, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.8 + i * 0.2 }); });
-    $$('.orb').forEach(function (o, i) { gsap.to(o, { y: i % 2 ? 12 : -12, rotate: i % 2 ? 5 : -5, duration: 2.2 + i * 0.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 }); });
     if (fine) {
-      var layers = [['.stage__blob', 14], ['.stage__pack--1, .stage__pack--3', 26], ['.stage__pack--2, .stage__pack--4', 18], ['.orb', -30], ['.stage__badge', -16]];
+      var layers = [['.stage__pack--1, .stage__pack--3', 26], ['.stage__pack--2, .stage__pack--4', 18]];
       var movers = layers.map(function (l) {
         var els = $$(l[0], hero);
         return { d: l[1], x: gsap.quickTo(els, 'x', { duration: 0.9, ease: 'power3' }), yp: gsap.quickTo(els, 'yPercent', { duration: 0.9, ease: 'power3' }) };
@@ -392,7 +387,7 @@
   fontsReady.then(function () { reveals(); if (hasGSAP) ScrollTrigger.refresh(); });
   counters();
   ambient();
-  fx.ready.then(function () {
+  Promise.all([fx.ready, fontsReady]).then(function () {
     heroIn();
     html.dispatchEvent(new CustomEvent('abin:ready'));
     if (hasGSAP) ScrollTrigger.refresh();
