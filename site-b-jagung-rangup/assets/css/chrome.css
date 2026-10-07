@@ -20,6 +20,8 @@
 .bag-pill .icon { width: 17px; height: 17px; }
 .bag-pill__count { display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 8px; border-radius: 999px; background: var(--abin); color: var(--navy); font: 600 13px/1 var(--f-mono); transition: transform .4s var(--ease); }
 .bag-pill.is-bump .bag-pill__count { animation: bump .6s var(--ease); }
+.bag-pill__count[data-empty] { display: none; }
+.bag-pill:has(.bag-pill__count[data-empty]) { padding-right: 18px; }
 @keyframes bump { 40% { transform: scale(1.35); } }
 .nav__menu { display: none; }
 

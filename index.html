@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kali Kali by ABIN · Website concepts</title>
+<meta name="description" content="Two website concepts for ABIN Snack Food's Kali Kali corn sticks: Kali Nak Lagi! and Jagung Rangup.">
+<meta name="theme-color" content="#FFD21E">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<style>
+  /* fonts come from the two concept folders, so this page works opened from disk too */
+  @font-face { font-family: 'Anton'; font-weight: 400; font-display: swap; src: url(site-a-kali-nak-lagi/assets/fonts/anton-normal-latin.woff2) format('woff2'); }
+  @font-face { font-family: 'Rubik'; font-weight: 300 800; font-display: swap; src: url(site-a-kali-nak-lagi/assets/fonts/rubik-normal-latin.woff2) format('woff2'); }
+  @font-face { font-family: 'Archivo'; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(site-b-jagung-rangup/assets/fonts/archivo-normal-latin.woff2) format('woff2'); }
+  @font-face { font-family: 'Geist'; font-weight: 100 900; font-display: swap; src: url(site-b-jagung-rangup/assets/fonts/geist-normal-latin.woff2) format('woff2'); }
+  :root { --navy: #13234A; --navy-2: #3B4870; --a: #FF7A1A; --a-ink: #2A1609; --a-wash: #FFE7A3; --b: #2457E6; --b-wash: #4DA3FF; --sun: #FFD21E; --ease: cubic-bezier(.2, .7, .2, 1); }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body { margin: 0; min-height: 100vh; color: var(--navy); font: 400 17px/1.6 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--sun); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; height: auto; }
+  /* the page is split down the middle: each half carries its concept's colour and floods on hover */
+  .halves { position: fixed; inset: 0; display: grid; grid-template-columns: 1fr 1fr; pointer-events: none; }
+  .halves i { transition: background-color .7s var(--ease); }
+  .halves i:first-child { background: var(--a-wash); }
+  .halves i:last-child { background: var(--b-wash); }
+  body:has(.card--a:hover) .halves i:first-child { background: #FFC266; }
+  body:has(.card--b:hover) .halves i:last-child { background: #2F8BFF; }
+  .wrap { position: relative; width: min(100% - 64px, 1320px); margin: 0 auto; padding: 30px 0 40px; }
+  header { display: flex; justify-content: center; }
+  .brand { display: inline-flex; align-items: center; gap: 18px; padding: 12px 22px 12px 14px; border-radius: 999px; background: #fff; box-shadow: 0 20px 40px -26px rgba(19, 35, 74, .55); }
+  .brand img { width: 118px; }
+  .brand p { margin: 0; font-weight: 500; font-size: 15px; color: var(--navy-2); }
+  h1 { margin: 34px auto 0; max-width: 16ch; text-align: center; font: 800 clamp(48px, 5.8vw, 92px)/.95 'Archivo', 'Arial', sans-serif; font-stretch: 118%; letter-spacing: -.035em; text-transform: uppercase; }
+  .intro { max-width: 60ch; margin: 18px auto 0; text-align: center; font-size: 18px; color: var(--navy-2); }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; margin-top: 40px; perspective: 1400px; }
+  .card { position: relative; display: flex; flex-direction: column; padding: 14px 14px 28px; border-radius: 32px; background: #fff; box-shadow: 0 40px 70px -40px rgba(19, 35, 74, .55); transform-style: preserve-3d; transition: transform .6s var(--ease), box-shadow .4s; }
+  .card:hover { box-shadow: 0 60px 90px -44px rgba(19, 35, 74, .6); }
+  .card:focus-visible { outline: 3px solid var(--navy); outline-offset: 5px; }
+  .frame { border-radius: 20px; overflow: hidden; background: #EEF2F9; box-shadow: inset 0 0 0 1px rgba(19, 35, 74, .08); }
+  .frame__bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #F3F5FA; }
+  .frame__bar i { width: 10px; height: 10px; border-radius: 50%; background: #D9DFEA; }
+  .frame__bar span { margin-left: 10px; font-size: 12px; color: #7883A3; }
+  .frame img { width: 100%; aspect-ratio: 1200 / 758; object-fit: cover; object-position: top; transition: scale 1.2s var(--ease); }
+  .card:hover .frame img { scale: 1.035; }
+  .body { display: flex; flex-direction: column; flex: 1; padding: 24px 14px 0; }
+  .tag { align-self: flex-start; padding: 7px 14px; border-radius: 999px; font: 600 13px/1 'Geist', sans-serif; }
+  .card--a .tag { background: var(--a); color: #fff; }
+  .card--b .tag { background: var(--b); color: #fff; }
+  .name { margin: 16px 0 0; }
+  .card--a .name { font: 400 clamp(46px, 4.4vw, 68px)/.95 'Anton', Impact, sans-serif; text-transform: uppercase; color: var(--a); -webkit-text-stroke: 2px var(--a-ink); paint-order: stroke fill; text-shadow: 0 5px 0 var(--a-ink); }
+  .card--b .name { font: 800 clamp(38px, 3.6vw, 56px)/1 'Archivo', 'Arial', sans-serif; font-stretch: 125%; letter-spacing: -.035em; text-transform: uppercase; color: var(--b); }
+  .pitch { margin: 12px 0 0; font-size: 17px; color: var(--navy-2); }
+  ul { display: grid; gap: 9px; margin: 18px 0 0; padding: 0; list-style: none; }
+  li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; }
+  li::before { content: ''; flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: var(--dot); }
+  .card--a li { --dot: var(--a); }
+  .card--b li { --dot: var(--b); }
+  .palette { display: flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 13.5px; color: #7883A3; }
+  .palette span { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(19, 35, 74, .14); }
+  .palette b { margin-right: 4px; font-weight: 500; }
+  .spacer { flex: 1; min-height: 24px; }
+  .go { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 28px; border-radius: 999px; font: 600 16.5px/1 'Geist', sans-serif; color: #fff; transition: gap .35s var(--ease); }
+  .card--a .go { background: var(--a); border: 2.5px solid var(--a-ink); box-shadow: 0 5px 0 var(--a-ink); font-family: 'Rubik', sans-serif; font-weight: 700; }
+  .card--b .go { background: var(--navy); }
+  .go svg { width: 18px; height: 18px; transition: translate .4s var(--ease); }
+  .card:hover .go svg { translate: 5px 0; }
+  .note { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; margin: 40px auto 0; max-width: 1000px; padding: 18px 24px; border-radius: 24px; background: #fff; box-shadow: 0 30px 50px -36px rgba(19, 35, 74, .5); font-size: 15px; color: var(--navy-2); }
+  .note img { width: 76px; rotate: -8deg; }
+  .note b { color: var(--navy); }
+  footer { margin-top: 24px; text-align: center; font-size: 13.5px; color: var(--navy-2); }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 28px; } .halves { grid-template-columns: 1fr; } .halves i:last-child { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .card, .frame img, .go svg, .halves i { transition: none; } }
+</style>
+</head>
+<body>
+  <div class="halves" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <header>
+      <div class="brand"><img src="assets/logo-sm.webp" alt="ABIN" width="360" height="140"><p>Website concepts for Kali Kali, October 2026</p></div>
+    </header>
+    <h1>Two websites. One crunch.</h1>
+    <p class="intro">Both concepts are complete seven-page sites built on the same real content: your four flavours, the facts on your packs, the trade specs and the affiliate programme. Open each one on a laptop and pick the direction that feels most like ABIN.</p>
+
+    <div class="grid">
+      <a class="card card--a" href="site-a-kali-nak-lagi/index.html" data-tilt>
+        <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>site-a-kali-nak-lagi</span></div><img src="assets/preview-a.webp" alt="Preview of the Kali Nak Lagi! concept: a corn-silk home page with the four packs fanned out and falling corn sticks" width="1200" height="758"></div>
+        <div class="body">
+          <span class="tag">Concept A</span>
+          <h2 class="name">Kali Nak Lagi!</h2>
+          <p class="pitch">Playful flavour-pop. Chunky cartoon outlines, a corn-silk canvas and corn sticks raining down the hero, loud and fun like the crunch itself.</p>
+          <ul>
+            <li>A hero full of falling corn sticks: tap them to crunch, with a sound you can mute</li>
+            <li>A pinned flavour scene that turns the page red, cheddar, cream or blue as you scroll</li>
+            <li>Kali the corn-stick mascot, a flavour quiz, jelly buttons and circle-wipe page transitions</li>
+          </ul>
+          <p class="palette"><b>Colours</b><span style="background:#FFF5D6"></span><span style="background:#FFD21E"></span><span style="background:#FF7A1A"></span><span style="background:#1F45C8"></span><span style="background:#2A1609"></span></p>
+          <div class="spacer"></div>
+          <span class="go">Open Kali Nak Lagi!<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <a class="card card--b" href="site-b-jagung-rangup/index.html" data-tilt>
+        <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>site-b-jagung-rangup</span></div><img src="assets/preview-b.webp" alt="Preview of the Jagung Rangup concept: a red home page with a giant KALI KALI wordmark around a single Spicy pack" width="1200" height="758"></div>
+        <div class="body">
+          <span class="tag">Concept B</span>
+          <h2 class="name">Jagung Rangup</h2>
+          <p class="pitch">Sharp and vibrant. Bold colour blocks that change with every flavour, wide confident type and one pack that travels with you down the page.</p>
+          <ul>
+            <li>A Kali Kali pack that turns and travels down the home page, then bursts into corn sticks</li>
+            <li>Every section takes a flavour colour, and “A day with Kali Kali” scrolls sideways</li>
+            <li>A shop for snackers and for businesses, with EAN-13 barcodes, carton sizes and an enquiry list</li>
+          </ul>
+          <p class="palette"><b>Colours</b><span style="background:#4DA3FF"></span><span style="background:#D9341F"></span><span style="background:#FF7F11"></span><span style="background:#2DB34A"></span><span style="background:#2457E6"></span><span style="background:#FFD21E"></span></p>
+          <div class="spacer"></div>
+          <span class="go">Open Jagung Rangup<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="note">
+      <img src="site-a-kali-nak-lagi/assets/img/packs/variety.webp" alt="" width="1858" height="1106">
+      <p style="margin:0"><b>What is real and what is a placeholder.</b> Flavours, calories, barcodes, carton sizes, certifications, the factory, the expos and the affiliate programme come from ABIN’s packs, catalogue, packaging sheet and social pages. The 30&nbsp;g and Variety 4-pack prices and every review are placeholders to confirm before launch.</p>
+    </div>
+    <footer>Mockups for review, made for desktop and laptop screens. Icons from Lucide and Simple Icons.</footer>
+  </div>
+<script>
+(function () {
+  if (!window.matchMedia('(pointer: fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  [].forEach.call(document.querySelectorAll('[data-tilt]'), function (card) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'rotateY(' + (x * 7).toFixed(2) + 'deg) rotateX(' + (-y * 6).toFixed(2) + 'deg) translateY(-6px)';
+    });
+    card.addEventListener('pointerleave', function () { card.style.transform = ''; });
+  });
+}());
+</script>
+</body>
+</html>

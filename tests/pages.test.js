@@ -52,6 +52,17 @@ for (const [key, dir] of Object.entries(gen.SITES)) {
   }
 }
 
+test('the chooser links both concepts and every local reference (images, fonts) resolves', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  for (const dir of Object.values(gen.SITES)) assert.match(html, new RegExp(`href="${dir}/index\.html"`), `chooser links ${dir}`);
+  const refs = [...html.matchAll(/\s(?:src|href)="([^"]+)"|url\(([^)]+)\)/g)].map((m) => m[1] || m[2]);
+  assert.ok(refs.length > 6, 'chooser has local references');
+  for (const ref of refs) {
+    if (/^(https?:|mailto:|tel:|#|data:)/.test(ref)) continue;
+    assert.ok(fs.existsSync(path.join(ROOT, decodeURI(ref.split('#')[0].split('?')[0]))), `index.html: missing local file ${ref}`);
+  }
+});
+
 test('no site script uses fetch() or ES modules (file:// safe)', () => {
   for (const dir of Object.values(gen.SITES)) {
     const js = path.join(ROOT, dir, 'assets', 'js');
