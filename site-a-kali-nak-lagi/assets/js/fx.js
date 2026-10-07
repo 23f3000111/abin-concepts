@@ -240,12 +240,15 @@
   if (!hasGSAP) { $$('[data-pop],[data-split]').forEach(function (e) { e.style.opacity = 1; }); }
   var reveals = function () {
     if (!hasGSAP) return;
-    if (reduce) { gsap.set('[data-pop],[data-split]', { opacity: 1 }); return; }
-    gsap.set('[data-pop]', { opacity: 0, y: 44, scale: 0.92 });
-    ScrollTrigger.batch('[data-pop]', {
-      start: 'top 90%', once: true,
-      onEnter: function (batch) { gsap.to(batch, { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'back.out(1.6)', stagger: 0.08, overwrite: true, clearProps: 'transform' }); }
-    });
+    var pops = $$('[data-pop]');
+    if (reduce) { $$('[data-pop],[data-split]').forEach(function (e) { e.style.opacity = 1; }); return; }
+    if (pops.length) {
+      gsap.set(pops, { opacity: 0, y: 44, scale: 0.92 });
+      ScrollTrigger.batch(pops, {
+        start: 'top 90%', once: true,
+        onEnter: function (batch) { gsap.to(batch, { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'back.out(1.6)', stagger: 0.08, overwrite: true, clearProps: 'transform' }); }
+      });
+    }
     $$('[data-split]').forEach(function (h) {
       if (!window.SplitText) { gsap.set(h, { opacity: 1 }); return; }
       var split = new SplitText(h, { type: 'words,chars', wordsClass: 'word', charsClass: 'ltr' });

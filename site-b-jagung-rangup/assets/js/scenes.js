@@ -24,7 +24,8 @@
       new SplitText(el, { type: 'words', wordsClass: 'lw' });
       var items = $$('.lw, .pill-img', el);
       gsap.set(items, { opacity: 0.14 });
-      gsap.set($$('.pill-img', el), { scale: 0.55 });
+      var pills = $$('.pill-img', el);
+      if (pills.length) gsap.set(pills, { scale: 0.55 });
       gsap.to(items, { opacity: 1, scale: 1, ease: 'none', stagger: 0.1, scrollTrigger: { trigger: el, start: 'top 78%', end: 'bottom 42%', scrub: 0.4 } });
     });
   };
