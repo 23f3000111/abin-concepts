@@ -116,6 +116,12 @@
     card.style.transform = 'rotateZ(' + tilt.toFixed(2) + 'deg) rotateY(' + turn.toFixed(2) + 'deg)';
     var ang = ((turn % 360) + 360) % 360, front = ang < 90 || ang > 270;
     setFace(front ? 1 : 0, travel.flavour);
+    // show only the face turned towards the viewer: Safari ignores backface-visibility on filtered elements
+    if (front !== st.front) {
+      st.front = front;
+      faces[0].style.visibility = front ? 'visible' : 'hidden';
+      faces[1].style.visibility = front ? 'hidden' : 'visible';
+    }
     shadow.style.transform = 'translateX(-50%) scaleX(' + (0.4 + 0.6 * Math.abs(Math.cos(turn * Math.PI / 180))).toFixed(3) + ')';
     el.classList.toggle('is-clickable', vis > 0.6 && st.pop < 0.1 && st.form > 0.9);
   };
