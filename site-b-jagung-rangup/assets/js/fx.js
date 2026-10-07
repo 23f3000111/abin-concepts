@@ -260,13 +260,11 @@
   };
 
   /* ------------------------------------- page colour: [data-bg] sections */
-  /* every section in <main> may name a canvas colour (data-bg="flavour" follows the picked flavour); the body
-     background morphs to the colour of the section under the middle of the viewport */
-  var bgOf = function (sec) {
-    var v = sec && sec.getAttribute('data-bg');
-    return v === 'flavour' ? 'var(--flavour-tint, var(--c-tint, var(--sky)))' : (v || 'var(--sky)');
-  };
-  fx.setBg = function (v) { html.style.setProperty('--page-bg', v); };
+  /* every section in <main> may name a canvas (sky, yellow, a flavour id, or "flavour" for the picked flavour);
+     html[data-canvas] follows the section under the middle of the viewport and base.css maps it to the
+     background, text ink and button colours */
+  var bgOf = function (sec) { return (sec && sec.getAttribute('data-bg')) || 'sky'; };
+  fx.setBg = fx.setCanvas = function (name) { if (html.getAttribute('data-canvas') !== name) html.setAttribute('data-canvas', name); };
   var pageBg = function () {
     var secs = $$('main > section');
     if (!secs.length) return;

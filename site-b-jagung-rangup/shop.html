@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The range. · Kali Kali by ABIN</title>
 <meta name="description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
-<meta name="theme-color" content="#E6EDFA">
+<meta name="theme-color" content="#4DA3FF">
 <meta property="og:title" content="The range. · Kali Kali by ABIN">
 <meta property="og:description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
 <meta property="og:image" content="assets/img/posters/four-flavours-en.webp">
@@ -19,6 +19,9 @@
 (function () {
   var h = document.documentElement, reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   h.classList.remove('no-js'); h.classList.add('js', 'bg-instant');
+  var f = (location.search.match(/[?&]f=(spicy|cheese|original|seaweed)/) || [])[1] || 'spicy';
+  h.setAttribute('data-flavour', f);
+  h.setAttribute('data-canvas', /^(index|product)$/.test(h.getAttribute('data-page')) ? 'flavour' : 'sky');
   try {
     var first = !sessionStorage.getItem('abin-b-seen');
     if (!reduce && (first || sessionStorage.getItem('abin-b-veil'))) h.classList.add('is-veiled');

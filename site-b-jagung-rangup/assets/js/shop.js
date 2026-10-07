@@ -348,7 +348,7 @@
         el.hidden = !m;
         if (!m) return;
         el.setAttribute('data-info', 'moments:' + m.id);
-        text($('[data-slot="time"]', el), m.time + ' ' + m.ampm);
+        text($('[data-slot="time"]', el), m.when);
         text($('[data-slot="title"]', el), m.title);
         text($('[data-slot="text"]', el), m.text);
         var im = $('img', el); if (im) { im.src = m.img; im.alt = m.title; }

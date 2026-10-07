@@ -129,7 +129,7 @@
     if (kind === 'certs' && (x = find(d.certs, id))) return { kicker: x.body, title: x.title, body: x.long, img: x.img, imgAlt: x.title + ' mark' };
     if (kind === 'moments' && (x = find(d.moments, id))) {
       var f = flavour(x.pair);
-      return { kicker: x.time + ' ' + x.ampm, title: x.title, body: x.text, img: x.img, imgAlt: x.title,
+      return { kicker: x.when, title: x.title, body: x.text, img: x.img, imgAlt: x.title,
         cta: { label: 'Pair it with ' + f.name, href: 'product.html?f=' + f.id + '&s=60' },
         video: x.video ? { src: x.video, label: 'Watch the ad' } : null, flavour: f };
     }

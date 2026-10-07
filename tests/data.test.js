@@ -46,6 +46,16 @@ test('content collections are filled', () => {
   assert.equal(data.media.reels.length, 6);
 });
 
+test('moments are named by the time of day, never by a clock time', () => {
+  const CLOCK = /\b\d{1,2}([:.]\d{2})?\s?(am|pm)\b|\b\d{1,2}[:.]\d{2}\b/i;
+  for (const m of data.moments) {
+    assert.match(m.when, /^[A-Z][a-z]+( [a-z]+)?$/, `${m.id} needs a name like "Lunch time"`);
+    assert.equal(m.time, undefined, `${m.id} still has a clock time`);
+    assert.equal(m.ampm, undefined, `${m.id} still has am/pm`);
+    assert.doesNotMatch(`${m.when} ${m.title} ${m.text}`, CLOCK, `${m.id} mentions a clock time`);
+  }
+});
+
 for (const site of SITES) {
   test(`[${site}] every asset path in data exists`, () => {
     const paths = [];

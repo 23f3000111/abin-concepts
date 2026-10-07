@@ -14,7 +14,7 @@
   if (!hero) return;
   var FLAV = {};
   data.flavours.forEach(function (f) { FLAV[f.id] = f; });
-  var travel = A.travel = { flavour: 'spicy', active: false };
+  var travel = A.travel = { flavour: FLAV[html.getAttribute('data-flavour')] ? html.getAttribute('data-flavour') : 'spicy', active: false };
   var clamp01 = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
   var smooth = function (t) { return t * t * (3 - 2 * t); };
 
@@ -27,7 +27,7 @@
     var f = FLAV[id];
     if (!f || id === travel.flavour) return;
     travel.flavour = id;
-    html.style.setProperty('--flavour-tint', f.color.tint);
+    html.setAttribute('data-flavour', id);
     $$('[data-travel] .slot__img').forEach(function (im) { im.src = f.img[60]; im.alt = 'Kali Kali ' + f.name + ' 60 g pack'; });
     if (card) card.setAttribute('aria-label', 'Quick view of Kali Kali ' + f.name);
     if (travel.active) gsap.to(st, { flip: st.flip + 360, duration: 1.15, ease: 'power3.inOut' });
@@ -80,6 +80,7 @@
   var reform = function () {
     st.burst = false;
     gsap.to(st, { pop: 0, duration: 0.8, ease: 'back.out(1.8)', overwrite: 'auto' });
+    document.dispatchEvent(new CustomEvent('abin:reform'));
   };
 
   var frame = function () {
@@ -97,12 +98,13 @@
     var span = last ? 1 : Math.max(1, anchors[i + 1] - anchors[i]);
     var raw = last ? 0 : clamp01((S - anchors[i]) / span), t = smooth(raw);
     var x = a.x + (b.x - a.x) * t, y = a.y + (b.y - a.y) * t, h = a.h + (b.h - a.h) * t;
+    // long hops: leave within half a screen of scrolling and reappear half a screen before the next slot
     var vis = 1;
-    if (!last && span > vh * 1.5) vis = raw < 0.5 ? clamp01(1 - (raw - 0.1) / 0.14) : clamp01((raw - 0.76) / 0.14);
+    if (!last && span > vh * 1.5) vis = Math.max(clamp01(1 - (S - anchors[i] - vh * 0.15) / (vh * 0.35)), clamp01(1 - (anchors[i + 1] - S - vh * 0.15) / (vh * 0.35)));
 
     var end = anchors[anchors.length - 1];
     if (!st.burst && S >= end - 4) {
-      if (st.form < 0.99) { st.burst = true; st.pop = 1; } else burst(x, y, h);
+      if (st.form < 0.99) { st.burst = true; st.pop = 1; document.dispatchEvent(new CustomEvent('abin:burst')); } else burst(x, y, h);
     } else if (st.burst && S < end - 180) reform();
 
     st.spin += (gsap.utils.clamp(-50, 50, st.vel * 1.6) - st.spin) * 0.08;
@@ -186,7 +188,6 @@
     }, onComplete: function () { node.textContent = to; } });
   };
   var syncHero = function (f) {
-    hero.style.setProperty('--ink', f.color.deep);
     $$('.picker button[data-f]', hero).forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-f') === f.id)); });
     scramble($('[data-hero="ean"]', hero), 'EAN ' + f.barcode[60]);
     scramble($('[data-hero="kcal"]', hero), f.kcal + ' kcal per 30 g');

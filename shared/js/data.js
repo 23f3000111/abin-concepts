@@ -222,16 +222,16 @@
     ],
 
     moments: [
-      { id: 'recess', time: '10:30', ampm: 'am', title: 'Recess crunch', pair: 'spicy',
+      { id: 'recess', when: 'Lunch time', title: 'Recess crunch', pair: 'spicy',
         text: 'The Spicy pack is the playground favourite. Prefer it mild? Cheese is the lunchbox hero.',
         img: 'assets/img/stills/recess.webp', video: 'assets/video/reel-5.mp4' },
-      { id: 'threepm', time: '3:00', ampm: 'pm', title: 'It’s 3PM!', pair: 'seaweed',
+      { id: 'threepm', when: 'Tea time', title: 'The afternoon break', pair: 'seaweed',
         text: 'Time for ABIN Kali Kali: a light, savoury recharge for your afternoon break, perfect with your coffee.',
         img: 'assets/img/posters/its-3pm.webp', video: null },
-      { id: 'family', time: '5:30', ampm: 'pm', title: 'Family snack time', pair: 'original',
+      { id: 'family', when: 'Family time', title: 'Family snack time', pair: 'original',
         text: 'Bowls on the table, everyone digging in. Original is pure corn crunch that the whole family agrees on.',
         img: 'assets/img/stills/family.webp', video: 'assets/video/reel-4.mp4' },
-      { id: 'gamenight', time: '9:00', ampm: 'pm', title: 'Game night', pair: 'cheese',
+      { id: 'gamenight', when: 'Game night', title: 'Good game, great snack', pair: 'cheese',
         text: 'Good game, great snack, better together! Creamy Cheese and fiery Spicy, gone by half-time.',
         img: 'assets/img/posters/game-night.webp', video: null }
     ],

@@ -1,12 +1,13 @@
 /* ABIN · Concept B "Jagung Rangup" · base: tokens, reset, type, buttons.
-   ABIN's shopfront palette: a sky-blue canvas taken from their blue signboard, sign navy for ink, sign blue for
-   links, ABIN yellow as the one sharp accent. The canvas morphs into flavour tints section by section (fx.js reads
-   [data-bg]); white is kept for cards and panels. Archivo (wide) for display, Geist for text, Geist Mono only for
-   real data (barcodes, nutrition, times, specs). */
+   A vibrant, colour-blocked shopfront: ABIN sky blue is the everyday canvas, every flavour owns a saturated colour
+   (chilli red, cheddar orange, corn-husk green, nori cobalt) and ABIN yellow is the brand accent. fx.js sets
+   html[data-canvas] from the section under the middle of the screen, and the canvas colour, text ink and button
+   colours all follow it. White is kept for cards and panels. Archivo (wide) for display, Geist for text, Geist Mono
+   only for real data (barcodes, nutrition, specs). */
 :root {
   --white: #FFFFFF;
-  --sky: #E6EDFA;
-  --sky-2: #D6E1F5;
+  --sky: #4DA3FF;
+  --sky-2: #3B8FEA;
   --ice: #EEF2F9;
   --ice-2: #E2E8F3;
   --navy: #13234A;
@@ -16,10 +17,10 @@
   --blue: #1F45C8;
   --abin: #FFD21E;
   --abin-deep: #F2B705;
-  --t-spicy: #F6DCD6;
-  --t-cheese: #FBEBC2;
-  --t-original: #F2ECDB;
-  --t-seaweed: #DCE5F2;
+  --v-spicy: #D9341F;
+  --v-cheese: #FF7F11;
+  --v-original: #2DB34A;
+  --v-seaweed: #2457E6;
   --p-spicy: #8E1B1B;
   --p-cheese: #E9A91E;
   --p-original: #C9B98F;
@@ -42,13 +43,28 @@
 @media (min-width: 1600px) { :root { --wrap: 1440px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
-html[data-page="index"] { --flavour-tint: #F6DCD6; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 100px; }
+
+/* canvas themes: the default is ABIN sky with navy ink */
+html { --page-bg: var(--sky); --ink: var(--navy); --ink-2: #172A55; --ink-3: #24386B; --rule: rgba(19, 35, 74, .3); --btn-bg: var(--navy); --btn-fg: #fff; --word: var(--navy); }
+html[data-canvas="yellow"] { --page-bg: var(--abin); }
+html[data-canvas="spicy"], html[data-canvas="flavour"][data-flavour="spicy"] { --page-bg: var(--v-spicy); --word: var(--abin); }
+html[data-canvas="cheese"], html[data-canvas="flavour"][data-flavour="cheese"] { --page-bg: var(--v-cheese); }
+html[data-canvas="original"], html[data-canvas="flavour"][data-flavour="original"] { --page-bg: var(--v-original); }
+html[data-canvas="seaweed"], html[data-canvas="flavour"][data-flavour="seaweed"] { --page-bg: var(--v-seaweed); --word: var(--abin); }
+html[data-canvas="spicy"], html[data-canvas="flavour"][data-flavour="spicy"],
+html[data-canvas="seaweed"], html[data-canvas="flavour"][data-flavour="seaweed"] { --ink: #fff; --ink-2: rgba(255, 255, 255, .9); --ink-3: rgba(255, 255, 255, .78); --rule: rgba(255, 255, 255, .42); --btn-bg: #fff; --btn-fg: var(--navy); }
+/* every flavour-tagged element (cards, quick view, bag lines) gets its saturated colour as --v */
+[data-flavour="spicy"] { --v: var(--v-spicy); }
+[data-flavour="cheese"] { --v: var(--v-cheese); }
+[data-flavour="original"] { --v: var(--v-original); }
+[data-flavour="seaweed"] { --v: var(--v-seaweed); }
+[data-flavour="bundle"] { --v: var(--abin); }
 .bg-instant body, .bg-instant .site-header { transition: none !important; }
-html { --page-bg: var(--sky); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 100px; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
-body { margin: 0; font: 400 16.5px/1.62 var(--f-body); color: var(--navy); background: var(--page-bg); transition: background-color .9s var(--ease); overflow-x: clip; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; font: 400 16.5px/1.62 var(--f-body); color: var(--ink); background: var(--page-bg); transition: background-color .7s var(--ease), color .5s; overflow-x: clip; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 /* lock the viewport only: overflow on body would make it a scroll container and unstick the header */
 html.is-locked { overflow: hidden; }
 img, svg, video, canvas { display: block; max-width: 100%; }
@@ -75,16 +91,16 @@ ul[class], ol[class] { list-style: none; padding: 0; }
 .h-l { font-size: clamp(40px, 4.6vw, 74px); line-height: 1; }
 .h-m { font-size: clamp(26px, 2.3vw, 36px); line-height: 1.08; letter-spacing: -.02em; }
 .h-s { font-size: 21px; line-height: 1.2; letter-spacing: -.01em; }
-.lead { font-size: clamp(18px, 1.35vw, 21px); line-height: 1.55; color: var(--navy-2); max-width: 36em; }
-.small { font-size: 14px; line-height: 1.5; color: var(--navy-3); }
+.lead { font-size: clamp(18px, 1.35vw, 21px); line-height: 1.55; color: var(--ink-2); max-width: 36em; transition: color .5s; }
+.small { font-size: 14px; line-height: 1.5; color: var(--ink-3); }
 .mono { font-family: var(--f-mono); font-weight: 500; font-size: 13px; letter-spacing: .01em; }
 .hl { background: linear-gradient(transparent 58%, var(--abin) 58% 92%, transparent 92%); padding-inline: .06em; }
 p { text-wrap: pretty; }
 
 /* ----------------------------------------------------------- buttons */
 .btn {
-  --bg: var(--navy);
-  --fg: #fff;
+  --bg: var(--btn-bg);
+  --fg: var(--btn-fg);
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -107,7 +123,7 @@ p { text-wrap: pretty; }
 .btn:active { translate: 0 1px; }
 .btn .icon { width: 18px; height: 18px; flex: none; }
 .btn--abin { --bg: var(--abin); --fg: var(--navy); --fill: var(--navy); --fill-fg: #fff; }
-.btn--line { --bg: transparent; --fg: var(--navy); box-shadow: inset 0 0 0 1.5px var(--navy); }
+.btn--line { --bg: transparent; --fg: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
 .btn--white { --bg: #fff; --fg: var(--navy); box-shadow: inset 0 0 0 1.5px var(--line); }
 .btn--sm { height: 42px; padding: 0 18px; font-size: 14.5px; }
 .btn--lg { height: 60px; padding: 0 30px; font-size: 16.5px; }
@@ -115,10 +131,10 @@ p { text-wrap: pretty; }
 .icon-btn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line); background: #fff; transition: box-shadow .25s, background-color .25s; }
 .icon-btn:hover { box-shadow: inset 0 0 0 1.5px var(--navy); }
 .icon-btn .icon { width: 18px; height: 18px; }
-.link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--blue); background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; padding-bottom: 2px; transition: background-size .4s var(--ease); }
+.link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--link, var(--ink)); background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; padding-bottom: 2px; transition: background-size .4s var(--ease); }
 .link:hover { background-size: 100% 1.5px; }
 .link .icon { width: 16px; height: 16px; }
-.link-btn { font-size: 14px; color: var(--navy-3); text-decoration: underline; text-underline-offset: 3px; }
+.link-btn { font-size: 14px; color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
 .tag { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); background: #fff; font: 500 12.5px/1 var(--f-body); color: var(--navy-2); white-space: nowrap; }
 .tag .icon { width: 14px; height: 14px; }
 .tag--abin { background: var(--abin); box-shadow: none; color: var(--navy); }
@@ -130,7 +146,7 @@ p { text-wrap: pretty; }
 
 /* ------------------------------------------------------------ forms */
 .field { display: grid; gap: 7px; }
-.field label { font-weight: 600; font-size: 14.5px; }
+.field label { font-weight: 600; font-size: 14.5px; color: var(--ink); }
 .field input, .field select, .field textarea { width: 100%; height: 50px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: var(--r-s); background: #fff; font-size: 16px; transition: border-color .2s, box-shadow .2s; }
 .field textarea { height: auto; min-height: 120px; padding: 14px 16px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(31, 69, 200, .14); }
