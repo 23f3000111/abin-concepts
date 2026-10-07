@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Let's grow together. · Kali Kali by ABIN</title>
-<meta name="description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
+<title>Let's grow together · Kali Kali by ABIN</title>
+<meta name="description" content="Contact ABIN Snack Food in Rawang: WhatsApp +60 19-976 1857, abinsnackfood@gmail.com. Send a trade or export enquiry, join the 15% affiliate programme, or just say hello.">
 <meta name="theme-color" content="#4DA3FF">
-<meta property="og:title" content="Let's grow together. · Kali Kali by ABIN">
-<meta property="og:description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
+<meta property="og:title" content="Let's grow together · Kali Kali by ABIN">
+<meta property="og:description" content="Contact ABIN Snack Food in Rawang: WhatsApp +60 19-976 1857, abinsnackfood@gmail.com. Send a trade or export enquiry, join the 15% affiliate programme, or just say hello.">
 <meta property="og:image" content="assets/img/posters/four-flavours-en.webp">
 <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
@@ -77,9 +77,134 @@
 </div>
 
 <main id="main">
-<section class="phero">
+<section class="phero chero" aria-labelledby="contact-title">
   <div class="wrap">
-    <h1 class="h-xl" data-lines>Let's grow together.</h1>
+    <h1 class="h-xl" id="contact-title" data-lines>Let’s grow together.</h1>
+    <p class="lead" data-rise>Stocking a shelf, sharing Kali Kali with your followers or craving a carton? Pick a way to reach the team in Rawang.</p>
+    <div class="ccards">
+      <a class="ccard" href="https://wa.me/message/GPFMZ6A6OSM6G1" target="_blank" rel="noopener" data-rise><span class="ccard__icon"><i data-icon="whatsapp"></i></span><strong>WhatsApp</strong><span>The fastest way to order or ask.</span><span class="ccard__go">Open chat<i data-icon="arrow-up-right"></i></span></a>
+      <a class="ccard" href="tel:+60199761857" data-rise><span class="ccard__icon"><i data-icon="phone"></i></span><strong>Call</strong><span>+60 19-976 1857</span><span class="ccard__go">Call now<i data-icon="arrow-up-right"></i></span></a>
+      <a class="ccard" href="mailto:abinsnackfood@gmail.com" data-rise><span class="ccard__icon"><i data-icon="mail"></i></span><strong>E-mail</strong><span>abinsnackfood@gmail.com</span><span class="ccard__go">Write to us<i data-icon="arrow-up-right"></i></span></a>
+      <a class="ccard" href="https://www.google.com/maps/search/?api=1&amp;query=Jalan+BJ+2+Taman+Perindustrian+Belmas+Johan+48000+Rawang+Selangor" target="_blank" rel="noopener" data-rise><span class="ccard__icon"><i data-icon="pin"></i></span><strong>Visit</strong><span>No. 22, Jalan BJ 2, Taman Perindustrian Belmas Johan, Rawang</span><span class="ccard__go">Get directions<i data-icon="arrow-up-right"></i></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="forms section" aria-labelledby="forms-title" data-bg="yellow">
+  <div class="wrap forms__grid">
+    <div class="forms__intro">
+      <h2 class="h-l" id="forms-title" data-lines>What can we help with?</h2>
+      <p class="lead" data-rise>Every form opens a ready-made WhatsApp message, or an e-mail if you prefer. Nothing is sent until you press send there.</p>
+    </div>
+    <div class="forms__box" data-tabs>
+      <div class="forms__tabs" role="tablist" aria-label="Choose a form">
+        <button type="button" role="tab" id="tab-trade" aria-controls="trade" aria-selected="true"><i data-icon="package"></i>Trade enquiry</button>
+        <button type="button" role="tab" id="tab-affiliate" aria-controls="affiliate" aria-selected="false" tabindex="-1"><i data-icon="percent"></i>Affiliate</button>
+        <button type="button" role="tab" id="tab-hello" aria-controls="hello" aria-selected="false" tabindex="-1"><i data-icon="message"></i>Say hello</button>
+      </div>
+      <div class="forms__panel" id="trade" role="tabpanel" aria-labelledby="tab-trade">
+        <form class="form" data-form="trade">
+          <p class="form__intro">Supermarkets, convenience stores, cafés, corporate gifts, distributors and importers. Tell us what you need and ABIN replies with trade prices.</p>
+          <p class="form__prefilled" data-prefilled hidden><i data-icon="check"></i><span data-prefilled-count></span></p>
+          <div class="form__grid">
+            <div class="field"><label for="w-biz">Business name</label><input id="w-biz" name="business" autocomplete="organization" required></div>
+            <div class="field"><label for="w-type">Type of business</label>
+              <select id="w-type" name="type" required>
+                <option value="">Choose one</option>
+                <option>Supermarket or hypermarket</option>
+                <option>Convenience store or mini market</option>
+                <option>Café, restaurant or hotel</option>
+                <option>Corporate gifts or events</option>
+                <option>Distributor or importer</option>
+                <option>Online seller</option>
+              </select>
+            </div>
+            <div class="field"><label for="w-loc">Town or country</label><input id="w-loc" name="location" required></div>
+            <div class="field"><label for="w-name">Your name</label><input id="w-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="w-phone">Phone</label><input id="w-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="w-email">E-mail (optional)</label><input id="w-email" name="email" type="email" autocomplete="email"></div>
+          </div>
+          <fieldset class="skus" data-require-one>
+            <legend>Which packs? Cartons per order</legend>
+            <div class="skus__grid">
+              <label class="sku"><input type="checkbox" name="sku" value="spicy-30"><span>Spicy 30 g</span><input type="number" name="cartons-spicy-30" min="1" max="999" value="1" aria-label="Cartons of Spicy 30 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="cheese-30"><span>Cheese 30 g</span><input type="number" name="cartons-cheese-30" min="1" max="999" value="1" aria-label="Cartons of Cheese 30 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="original-30"><span>Original 30 g</span><input type="number" name="cartons-original-30" min="1" max="999" value="1" aria-label="Cartons of Original 30 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="seaweed-30"><span>Seaweed 30 g</span><input type="number" name="cartons-seaweed-30" min="1" max="999" value="1" aria-label="Cartons of Seaweed 30 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="spicy-60"><span>Spicy 60 g</span><input type="number" name="cartons-spicy-60" min="1" max="999" value="1" aria-label="Cartons of Spicy 60 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="cheese-60"><span>Cheese 60 g</span><input type="number" name="cartons-cheese-60" min="1" max="999" value="1" aria-label="Cartons of Cheese 60 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="original-60"><span>Original 60 g</span><input type="number" name="cartons-original-60" min="1" max="999" value="1" aria-label="Cartons of Original 60 g"></label>
+              <label class="sku"><input type="checkbox" name="sku" value="seaweed-60"><span>Seaweed 60 g</span><input type="number" name="cartons-seaweed-60" min="1" max="999" value="1" aria-label="Cartons of Seaweed 60 g"></label>
+            </div>
+            <p class="field-error" data-require-one-error hidden>Tick at least one pack.</p>
+            <p class="small">30 g: 36 packs a carton. 60 g: 20 packs a carton (2024 catalogue).</p>
+          </fieldset>
+          <div class="field field--full"><label for="w-note">Anything else? (optional)</label><textarea id="w-note" name="note" placeholder="Delivery area, how often you restock, export paperwork you need"></textarea></div>
+          <fieldset class="channel"><legend>Send with</legend><label><input type="radio" name="channel" value="whatsapp" checked> WhatsApp</label><label><input type="radio" name="channel" value="email"> E-mail</label></fieldset>
+          <button class="btn btn--lg" type="submit"><i data-icon="send"></i>Send trade enquiry</button>
+          <p class="form__done" data-form-done hidden>Your enquiry is ready in a new tab. Nothing opened? <a class="link" href="https://wa.me/60199761857" target="_blank" rel="noopener">Open it again</a>.</p>
+        </form>
+      </div>
+      <div class="forms__panel" id="affiliate" role="tabpanel" aria-labelledby="tab-affiliate" hidden>
+        <form class="form" data-form="affiliate">
+          <p class="form__intro">Earn 15% commission on every successful sale. Mudah, pantas dan percuma: easy, fast and free to join.</p>
+          <div class="form__grid">
+            <div class="field"><label for="a-name">Your name</label><input id="a-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="a-phone">WhatsApp number</label><input id="a-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="a-platform">Main platform</label>
+              <select id="a-platform" name="platform" required>
+                <option value="">Choose one</option>
+                <option>TikTok</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option>Xiaohongshu</option><option>Lemon8</option><option>My own online shop</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field"><label for="a-handle">Handle or shop link</label><input id="a-handle" name="handle" placeholder="@yourname" required></div>
+            <div class="field field--full"><label for="a-followers">Followers (optional)</label>
+              <select id="a-followers" name="followers"><option value="">Prefer not to say</option><option>Under 1,000</option><option>1,000 to 10,000</option><option>10,000 to 100,000</option><option>Over 100,000</option></select>
+            </div>
+          </div>
+          <button class="btn btn--lg" type="submit"><i data-icon="whatsapp"></i>Join on WhatsApp</button>
+          <p class="form__done" data-form-done hidden>Your sign-up is ready in WhatsApp. Nothing opened? <a class="link" href="https://wa.me/60199761857" target="_blank" rel="noopener">Open it again</a>.</p>
+        </form>
+      </div>
+      <div class="forms__panel" id="hello" role="tabpanel" aria-labelledby="tab-hello" hidden>
+        <form class="form" data-form="hello">
+          <p class="form__intro">Questions, feedback or a snack emergency? Your message opens in WhatsApp, ready to send.</p>
+          <div class="form__grid">
+            <div class="field"><label for="h-name">Your name</label><input id="h-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="h-phone">Phone (optional)</label><input id="h-phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="field field--full"><label for="h-email">E-mail (optional)</label><input id="h-email" name="email" type="email" autocomplete="email"></div>
+            <div class="field field--full"><label for="h-msg">Message</label><textarea id="h-msg" name="message" required></textarea></div>
+          </div>
+          <fieldset class="channel"><legend>Send with</legend><label><input type="radio" name="channel" value="whatsapp" checked> WhatsApp</label><label><input type="radio" name="channel" value="email"> E-mail</label></fieldset>
+          <button class="btn btn--lg" type="submit"><i data-icon="send"></i>Send message</button>
+          <p class="form__done" data-form-done hidden>Your message is ready in a new tab. Nothing opened? <a class="link" href="https://wa.me/60199761857" target="_blank" rel="noopener">Open it again</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="find section" aria-labelledby="find-title" data-bg="seaweed">
+  <div class="wrap find__grid">
+    <div class="find__copy">
+      <h2 class="h-l" id="find-title" data-lines>Find the factory.</h2>
+      <p class="lead" data-rise>Kilang Makanan Ringan ABIN, No. 22 (Ground Floor), Jalan BJ 2, Taman Perindustrian Belmas Johan, 48000 Rawang, Selangor.</p>
+      <p class="find__areas" data-rise><span>We deliver around</span><span class="tag">Kuala Lumpur</span><span class="tag">Kepong</span><span class="tag">Petaling Jaya</span><span class="tag">Puchong</span></p>
+      <div class="socials socials--big" data-rise>
+        <a href="https://www.facebook.com/profile.php?id=100068376395220" target="_blank" rel="noopener" aria-label="ABIN on Facebook"><i data-icon="facebook"></i></a>
+        <a href="https://www.instagram.com/abin_snackfood/" target="_blank" rel="noopener" aria-label="ABIN on Instagram"><i data-icon="instagram"></i></a>
+        <a href="https://www.tiktok.com/@abinsnackfood" target="_blank" rel="noopener" aria-label="ABIN on TikTok"><i data-icon="tiktok"></i></a>
+        <a href="https://www.linkedin.com/in/abin-corn-stick-559017340" target="_blank" rel="noopener" aria-label="ABIN on LinkedIn"><i data-icon="linkedin"></i></a>
+        <a href="https://shopee.com.my/abin_snack" target="_blank" rel="noopener" aria-label="ABIN on Shopee"><i data-icon="shopee"></i></a>
+        <a href="https://www.xiaohongshu.com/user/profile/652f81d1000000002a028840" target="_blank" rel="noopener" aria-label="ABIN on Xiaohongshu"><i data-icon="xiaohongshu"></i></a>
+        <a href="https://s.lemon8-app.com/s/GgUMFmFwb" target="_blank" rel="noopener" aria-label="ABIN on Lemon8"><i data-icon="lemon8"></i></a>
+        <a href="https://linktr.ee/aBinCornStick" target="_blank" rel="noopener" aria-label="All ABIN links on Linktree"><i data-icon="linktree"></i></a>
+      </div>
+      <button class="link-btn" type="button" data-copy="abinsnackfood@gmail.com" data-rise>Copy our e-mail address</button>
+    </div>
+    <div class="find__map" data-unmask>
+      <iframe title="Map: ABIN snack factory in Rawang" src="https://maps.google.com/maps?q=Jalan%20BJ%202%2C%20Taman%20Perindustrian%20Belmas%20Johan%2C%2048000%20Rawang%2C%20Selangor&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 </section>
 
