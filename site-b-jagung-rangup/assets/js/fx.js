@@ -128,6 +128,7 @@
       if (e.pointerType && e.pointerType !== 'mouse') return;
       qx(e.clientX); qy(e.clientY);
       cursor.classList.add('is-on');
+      cursor.classList.toggle('is-hidden', !!(e.target.closest && e.target.closest('[data-zoom]')));
       var t = e.target.closest ? e.target.closest('[data-cursor], a, button, summary, label, select, [role="tab"]') : null;
       var lab = t && t.getAttribute('data-cursor');
       if (lab && label.textContent !== lab) label.textContent = lab;

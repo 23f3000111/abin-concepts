@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kali Kali · Kali Kali by ABIN</title>
-<meta name="description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
+<title>Kali Kali corn sticks · ABIN</title>
+<meta name="description" content="Kali Kali crunchy corn sticks by ABIN: flavour notes, nutrition per serving, barcode and carton details, and order on WhatsApp or Shopee.">
 <meta name="theme-color" content="#4DA3FF">
-<meta property="og:title" content="Kali Kali · Kali Kali by ABIN">
-<meta property="og:description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
+<meta property="og:title" content="Kali Kali corn sticks · ABIN">
+<meta property="og:description" content="Kali Kali crunchy corn sticks by ABIN: flavour notes, nutrition per serving, barcode and carton details, and order on WhatsApp or Shopee.">
 <meta property="og:image" content="assets/img/posters/four-flavours-en.webp">
 <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
@@ -45,7 +45,7 @@
   <nav class="nav wrap" aria-label="Main">
     <a class="nav__logo" href="index.html" aria-label="ABIN Kali Kali, home"><img src="assets/img/brand/logo-sm.webp" alt="ABIN" width="360" height="140"></a>
     <ul class="nav__links">
-      <li><a data-nav="shop" href="shop.html">Shop</a></li>
+      <li><a data-nav="shop" aria-current="page" href="shop.html">Shop</a></li>
       <li><a data-nav="benefits" href="benefits.html">The formula</a></li>
       <li><a data-nav="about" href="about.html">Our story</a></li>
       <li><a data-nav="faq" href="faq.html">FAQ</a></li>
@@ -63,7 +63,7 @@
   <nav class="wrap" aria-label="Menu">
     <ul class="menu__links">
       <li><a data-nav="index" href="index.html">Home</a></li>
-      <li><a data-nav="shop" href="shop.html">Shop</a></li>
+      <li><a data-nav="shop" aria-current="page" href="shop.html">Shop</a></li>
       <li><a data-nav="benefits" href="benefits.html">The formula</a></li>
       <li><a data-nav="about" href="about.html">Our story</a></li>
       <li><a data-nav="faq" href="faq.html">FAQ</a></li>
@@ -77,9 +77,108 @@
 </div>
 
 <main id="main">
-<section class="phero">
+<section class="pp-hero" aria-labelledby="pp-title" data-bg="flavour">
+  <div class="wrap pp-hero__grid">
+    <div class="pp-hero__stage">
+      <p class="pp-hero__word wordmark" data-pp="word" aria-hidden="true">Pedas</p>
+      <img class="pp-hero__ing" data-pp="ingredient-img" src="assets/img/ingredients/chilli.webp" alt="" width="520" height="515">
+      <div class="pp-hero__pack" data-zoom="2.4">
+        <img data-pp="img" src="assets/img/packs/spicy-60.webp" alt="Kali Kali Spicy 60 g pack" width="768" height="1100">
+        <span class="zoom-lens" aria-hidden="true"></span>
+      </div>
+      <img class="pp-hero__stick pp-hero__stick--1" data-pp="stick" src="assets/img/sticks/stick-spicy.webp" alt="" width="900" height="244">
+      <img class="pp-hero__stick pp-hero__stick--2" data-pp="stick" src="assets/img/sticks/stick-spicy.webp" alt="" width="900" height="244">
+      <button class="pp-hero__full link-btn" type="button" data-pp-zoom data-lightbox="assets/img/packs/spicy-60.webp" data-caption="Kali Kali pack"><i data-icon="zoom"></i>Open the full pack</button>
+    </div>
+    <div class="pp-panel">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="shop.html">The range</a><i data-icon="chevron-right"></i><span data-pp="name">Spicy</span></nav>
+      <p class="pp-panel__names"><span data-pp="bm">Pedas</span><span data-pp="zh">香辣味</span><span class="tag tag--abin" data-pp="badge" hidden></span></p>
+      <h1 class="pp-panel__title" id="pp-title" data-pp="name">Spicy</h1>
+      <p class="pp-panel__tag" data-pp="tagline">Bold &amp; exciting</p>
+      <p class="pp-panel__blurb" data-pp="blurb"></p>
+      <div class="pp-panel__row">
+        <div class="sizes" data-pp-size role="group" aria-label="Pack size"><button type="button" data-g="30">30 g</button><button type="button" data-g="60" aria-pressed="true">60 g</button></div>
+        <strong class="pp-panel__price" data-pp="price">RM 8.90</strong>
+      </div>
+      <div class="pp-panel__buy">
+        <div class="qty"><button type="button" data-pp-step="-1" aria-label="One less"><i data-icon="minus"></i></button><input data-pp-qty type="number" min="1" max="99" value="1" aria-label="Quantity"><button type="button" data-pp-step="1" aria-label="One more"><i data-icon="plus"></i></button></div>
+        <button class="btn pp-panel__add" type="button" data-pp-add><i data-icon="bag"></i>Add to bag</button>
+        <a class="btn btn--white" data-pp-shopee href="https://shopee.com.my/abin_snack" target="_blank" rel="noopener"><i data-icon="shopee"></i>Shopee</a>
+      </div>
+      <p class="pp-panel__note" data-pp="placeholder" hidden>*Indicative price, confirmed with you on WhatsApp.</p>
+      <ul class="pp-panel__claims">
+        <li><button class="chip" type="button" data-info="claims:plant"><i data-icon="leaf"></i>Plant-based</button></li>
+        <li><button class="chip" type="button" data-info="claims:gluten"><i data-icon="wheat-off"></i>Gluten-free</button></li>
+        <li><button class="chip" type="button" data-info="claims:preservatives"><i data-icon="flask-off"></i>No preservatives</button></li>
+        <li><button class="chip" type="button" data-info="claims:halal"><i data-icon="halal"></i>Halal</button></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="pp-specs section" aria-labelledby="specs-title">
+  <div class="wrap pp-specs__grid">
+    <div class="pp-specs__main">
+      <h2 class="h-l" id="specs-title" data-lines>The details.</h2>
+      <table class="spec-table">
+        <caption class="sr">Pack specifications</caption>
+        <tbody>
+          <tr><th scope="row">Product</th><td data-pp="full">Kali Kali Spicy</td></tr>
+          <tr><th scope="row">Pack size</th><td><span data-pp="label">60 g</span></td></tr>
+          <tr><th scope="row">Shelf life</th><td data-pp="shelf">12 months</td></tr>
+          <tr><th scope="row">Per carton</th><td data-pp="carton">20 packs</td></tr>
+          <tr><th scope="row">Diet</th><td data-pp="diet">Vegetarian</td></tr>
+          <tr><th scope="row">Certification</th><td>Halal JAKIM (MS1500), MeSTI</td></tr>
+          <tr><th scope="row">Made in</th><td>Rawang, Selangor, Malaysia</td></tr>
+          <tr><th scope="row">Barcode</th><td><span class="mono" data-pp="barcode">9555083708202</span><svg class="spec-table__ean" data-pp-ean aria-hidden="true"></svg></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="pp-nutri" aria-labelledby="pp-nutri-title">
+      <h2 class="pp-nutri__title" id="pp-nutri-title">Per 30 g serving</h2>
+      <p class="pp-nutri__kcal"><span data-pp="kcal">158</span><small>kcal</small></p>
+      <dl class="pp-nutri__rows">
+        <div><dt>Of a 2,000 kcal day</dt><dd data-pp="daily">8%</dd></div>
+        <div><dt>Trans fat</dt><dd>0%</dd></div>
+        <div><dt>Preservatives</dt><dd>None</dd></div>
+        <div><dt>Gluten</dt><dd>Free</dd></div>
+      </dl>
+      <p class="small">The full nutrition panel and ingredients are printed on the pack.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="pp-taste section" aria-labelledby="taste-notes-title" data-bg="flavour">
+  <div class="wrap pp-taste__grid">
+    <div class="pp-taste__copy">
+      <h2 class="h-l" id="taste-notes-title" data-lines>How it tastes.</h2>
+      <ul class="pp-taste__notes" data-pp="notes"></ul>
+      <button class="pp-moment" type="button" data-pp-moment data-info="moments:recess" hidden>
+        <img src="assets/img/stills/recess.webp" alt="" width="720" height="1280" loading="lazy">
+        <span class="pp-moment__body"><span class="pp-moment__when" data-slot="time"></span><strong data-slot="title"></strong><span data-slot="text"></span></span>
+      </button>
+    </div>
+    <button class="pp-clip" type="button" data-hover-card data-cursor="Play" data-pp-clip data-lightbox="assets/video/flavour-spicy.mp4" data-type="video" data-caption="From ABIN's ad">
+      <video data-pp="clip" data-hover-play src="assets/video/flavour-spicy.mp4" poster="assets/video/flavour-spicy.jpg" preload="none" muted playsinline loop></video>
+      <span class="pp-clip__label"><i data-icon="play"></i>From the ad</span>
+    </button>
+  </div>
+</section>
+
+<section class="pp-more section" aria-labelledby="more-title">
   <div class="wrap">
-    <h1 class="h-xl" data-lines>Kali Kali</h1>
+    <header class="sec-head">
+      <h2 class="h-l" id="more-title" data-lines>Try the others.</h2>
+      <div class="sec-head__aside"><a class="btn btn--line" href="shop.html">The whole range<i data-icon="arrow-right"></i></a></div>
+    </header>
+    <div class="cards cards--3" data-pp-others></div>
+    <a class="pp-next" data-pp-next href="product.html?f=cheese&amp;s=60">
+      <span class="pp-next__label">Next flavour</span>
+      <span class="pp-next__name" data-slot="name">Cheese</span>
+      <span class="pp-next__tag" data-slot="tagline">Creamy &amp; yummy</span>
+      <img src="assets/img/packs/cheese-60-sm.webp" alt="" width="390" height="560" loading="lazy">
+      <span class="pp-next__go"><i data-icon="arrow-right"></i></span>
+    </a>
   </div>
 </section>
 
@@ -326,6 +425,6 @@
 <script defer src="assets/js/forms.js"></script>
 <script defer src="assets/js/fx.js"></script>
 
-
+<script defer src="assets/js/product.js"></script>
 </body>
 </html>

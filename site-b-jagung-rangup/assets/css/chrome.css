@@ -155,6 +155,7 @@
 
 /* -------------------------------------------------------------- toasts */
 .toasts { position: fixed; z-index: 120; left: 50%; bottom: 26px; translate: -50% 0; display: grid; gap: 8px; justify-items: center; pointer-events: none; }
+html[data-mode="trade"] .page-shop .toasts { bottom: 112px; }
 .toast { padding: 13px 20px; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 500; font-size: 14.5px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .3s, transform .5s var(--ease); }
 .toast.is-in { opacity: 1; transform: none; }
 
@@ -182,7 +183,7 @@
 .cursor.is-big .cursor__ring { left: -44px; top: -44px; width: 88px; height: 88px; background: var(--abin); box-shadow: 0 14px 30px -14px rgba(19, 35, 74, .45); }
 .cursor.is-big .cursor__label { opacity: 1; scale: 1; }
 .cursor.is-down .cursor__ring { scale: .86; }
-html:has(dialog[open]) .cursor, .is-menu-open .cursor { opacity: 0; }
+html:has(dialog[open]) .cursor, .is-menu-open .cursor, .cursor.is-hidden { opacity: 0; }
 .has-cursor body > :not(dialog) [data-cursor] { cursor: none; }
 
 /* ---------------------------------------------------------- zoom lens */

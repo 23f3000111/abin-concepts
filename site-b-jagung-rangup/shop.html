@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The range. · Kali Kali by ABIN</title>
-<meta name="description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
+<title>The range · Kali Kali by ABIN</title>
+<meta name="description" content="Shop Kali Kali corn sticks by ABIN: Spicy, Cheese, Original and Seaweed in 30 g and 60 g packs plus the Variety 4-pack, or switch to Trade for barcodes, shelf life and carton sizes and send an enquiry.">
 <meta name="theme-color" content="#4DA3FF">
-<meta property="og:title" content="The range. · Kali Kali by ABIN">
-<meta property="og:description" content="Kali Kali crunchy corn sticks by ABIN Snack Food.">
+<meta property="og:title" content="The range · Kali Kali by ABIN">
+<meta property="og:description" content="Shop Kali Kali corn sticks by ABIN: Spicy, Cheese, Original and Seaweed in 30 g and 60 g packs plus the Variety 4-pack, or switch to Trade for barcodes, shelf life and carton sizes and send an enquiry.">
 <meta property="og:image" content="assets/img/posters/four-flavours-en.webp">
 <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
@@ -77,9 +77,81 @@
 </div>
 
 <main id="main">
-<section class="phero">
+<section class="phero shop-hero" aria-labelledby="shop-title">
+  <div class="wrap shop-hero__grid">
+    <div class="shop-hero__copy">
+      <h1 class="h-xl" id="shop-title" data-lines>The range.</h1>
+      <p class="lead" data-rise>Four flavours in 30&nbsp;g and 60&nbsp;g packs, plus a Variety 4-pack. Snacking? Fill your bag and order on WhatsApp or Shopee. Stocking a shelf? Switch to Trade for barcodes and carton sizes.</p>
+      <div class="mode-switch" role="group" aria-label="Shopping for" data-mode data-rise>
+        <button type="button" value="retail" aria-pressed="true"><i data-icon="bag"></i>For me</button>
+        <button type="button" value="trade" aria-pressed="false"><i data-icon="package"></i>For my business</button>
+      </div>
+    </div>
+    <button class="shop-hero__fan" type="button" data-quick="variety-4" data-cursor="View" aria-label="Quick view: Variety 4-pack">
+      <img src="assets/img/packs/variety.webp" alt="The four Kali Kali 30 g packs fanned out: Spicy, Cheese, Original and Seaweed" width="1858" height="1106">
+      <span class="shop-hero__tag tag tag--abin">Variety 4-pack</span>
+    </button>
+  </div>
+</section>
+
+<section class="shop section" id="retail" data-mode-panel="retail" aria-labelledby="retail-title">
   <div class="wrap">
-    <h1 class="h-xl" data-lines>The range.</h1>
+    <div class="shop__bar" data-filters="#shop-grid">
+      <h2 class="sr" id="retail-title">All Kali Kali products</h2>
+      <div class="shop__filters" role="group" aria-label="Show">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="spicy" aria-pressed="false"><i data-icon="flame"></i>Spicy</button>
+        <button class="chip" type="button" data-filter="mild" aria-pressed="false">Not spicy</button>
+        <button class="chip" type="button" data-filter="vegan" aria-pressed="false"><i data-icon="leaf"></i>Vegan-friendly</button>
+        <button class="chip" type="button" data-filter="30" aria-pressed="false">30 g</button>
+        <button class="chip" type="button" data-filter="60" aria-pressed="false">60 g</button>
+        <button class="chip" type="button" data-filter="bundle" aria-pressed="false"><i data-icon="gift"></i>Bundles</button>
+      </div>
+      <div class="shop__tools">
+        <p class="shop__count" data-count-shown aria-live="polite">9 products</p>
+        <label class="shop__sort"><span class="sr">Sort by</span>
+          <select data-sort>
+            <option value="popular">Popular first</option>
+            <option value="price-asc">Price, low to high</option>
+            <option value="price-desc">Price, high to low</option>
+          </select>
+          <i data-icon="chevron-down"></i>
+        </label>
+      </div>
+    </div>
+    <div class="cards cards--shop" id="shop-grid" data-products="all"></div>
+    <ol class="shop-steps" aria-label="How ordering works">
+      <li><span class="shop-steps__n">1</span><strong>Fill your bag</strong><span>Your bag remembers it on this device.</span></li>
+      <li><span class="shop-steps__n">2</span><strong>Send it on WhatsApp</strong><span>It arrives as a ready-made message.</span></li>
+      <li><span class="shop-steps__n">3</span><strong>Pay and snack</strong><span>ABIN confirms the total and delivery in the chat.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="trade section" id="trade" data-mode-panel="trade" aria-labelledby="trade-title">
+  <div class="wrap">
+    <header class="sec-head">
+      <div>
+        <h2 class="h-l" id="trade-title">Trade specs.</h2>
+        <p class="lead">Every SKU with its EAN-13 barcode, shelf life and carton size. Add cartons to your enquiry and ABIN replies with trade prices.</p>
+      </div>
+      <div class="sec-head__aside">
+        <a class="btn btn--line" href="assets/docs/abin-kali-kali-catalogue.pdf" download><i data-icon="download"></i>Catalogue (PDF)</a>
+        <a class="btn btn--line" href="assets/docs/abin-packaging-specs.pdf" download><i data-icon="download"></i>Packaging specs (PDF)</a>
+      </div>
+    </header>
+    <div class="trade__list" data-trade-list></div>
+    <div class="enquiry-bar" data-enquiry-bar>
+      <div class="enquiry-bar__info">
+        <strong>Your enquiry</strong>
+        <span data-enquiry-count data-empty>0 cartons</span>
+        <ul class="enquiry-bar__list" data-enquiry-list></ul>
+      </div>
+      <div class="enquiry-bar__actions">
+        <button class="link-btn" type="button" data-enquiry-clear>Clear</button>
+        <a class="btn btn--abin" data-enquiry-send href="contact.html#trade"><i data-icon="send"></i>Send enquiry</a>
+      </div>
+    </div>
   </div>
 </section>
 

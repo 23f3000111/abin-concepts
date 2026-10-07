@@ -414,19 +414,29 @@
     if (A.hydrateIcons) A.hydrateIcons(c);
   };
   renderTrade();
-  $$('[data-mode]').forEach(function (group) {
-    var set = function (mode) {
-      html.setAttribute('data-mode', mode);
-      $$('button[value]', group).forEach(function (b) { b.setAttribute('aria-pressed', String(b.value === mode)); });
-      try { sessionStorage.setItem('abin-b-mode', mode); } catch (e) { /* ignore */ }
-      doc.dispatchEvent(new CustomEvent('abin:mode', { detail: { mode: mode } }));
-    };
+  var modeGroups = $$('[data-mode]');
+  var setMode = shop.setMode = function (mode) {
+    if (mode !== 'trade') mode = 'retail';
+    html.setAttribute('data-mode', mode);
+    modeGroups.forEach(function (group) { $$('button[value]', group).forEach(function (b) { b.setAttribute('aria-pressed', String(b.value === mode)); }); });
+    try { sessionStorage.setItem('abin-b-mode', mode); } catch (e) { /* ignore */ }
+    doc.dispatchEvent(new CustomEvent('abin:mode', { detail: { mode: mode } }));
+  };
+  if (modeGroups.length) {
     var start = 'retail';
-    try { start = sessionStorage.getItem('abin-b-mode') || (location.hash === '#trade' ? 'trade' : 'retail'); } catch (e) { /* ignore */ }
-    if (location.hash === '#trade') start = 'trade';
-    set(start);
-    group.addEventListener('click', function (e) { var b = e.target.closest('button[value]'); if (b) set(b.value); });
-  });
+    try { start = sessionStorage.getItem('abin-b-mode') || 'retail'; } catch (e) { /* ignore */ }
+    if (location.hash === '#trade' || location.hash === '#retail') start = location.hash.slice(1);
+    setMode(start);
+    modeGroups.forEach(function (group) {
+      group.addEventListener('click', function (e) { var b = e.target.closest('button[value]'); if (b) setMode(b.value); });
+    });
+    doc.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href*="#trade"], a[href*="#retail"]');
+      if (!a) return;
+      var url = new URL(a.href, location.href);
+      if (url.pathname === location.pathname) setMode(url.hash.slice(1));
+    }, true);
+  }
   doc.addEventListener('click', function (e) {
     var t = e.target.closest('[data-t-step],[data-t-add],[data-enquiry-clear]');
     if (!t) return;

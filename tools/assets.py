@@ -114,6 +114,26 @@ def upscale(img, key, model='realesrgan-x4plus-anime'):
     return out
 
 
+def feather(img, px=70, min_share=0.03):
+    """Fade the alpha towards any image edge that the cut-out was cropped against (opaque pixels touching
+    the border), so a cropped ingredient reads as a soft vignette instead of a hard straight cut."""
+    a = np.array(img.getchannel('A')).astype(np.float32)
+    h, w = a.shape
+    ramp_v = np.clip(np.arange(h, dtype=np.float32) / px, 0, 1)
+    ramp_h = np.clip(np.arange(w, dtype=np.float32) / px, 0, 1)
+    if (a[0] > 200).mean() > min_share:
+        a *= ramp_v[:, None]
+    if (a[-1] > 200).mean() > min_share:
+        a *= ramp_v[::-1][:, None]
+    if (a[:, 0] > 200).mean() > min_share:
+        a *= ramp_h[None, :]
+    if (a[:, -1] > 200).mean() > min_share:
+        a *= ramp_h[::-1][None, :]
+    out = img.copy()
+    out.putalpha(Image.fromarray(a.astype(np.uint8)))
+    return out
+
+
 def circle(img, cx, cy, r, size):
     """Circular crop -> RGBA disc of the given size."""
     box = img.convert('RGB').crop((cx - r, cy - r, cx + r, cy + r)).resize((size, size), Image.LANCZOS)
@@ -255,7 +275,7 @@ def orbs():
             save(nori_piece(im), 'img/ingredients/nori.webp', quality=86)
             save(circle(im, 680, 630, 84, size), 'img/orbs/nori.webp', quality=86)
             continue
-        cut = cutout(im.crop(box), f'ingredient-{name}')
+        cut = feather(cutout(im.crop(box), f'ingredient-{name}').convert('RGBA'))
         save(fit_w(cut, 520) if cut.width > cut.height else fit_h(cut, 520), f'img/ingredients/{name}.webp', quality=86)
         tile = Image.new('RGBA', (size * 2, size * 2), (0, 0, 0, 0))
         ImageDraw.Draw(tile).ellipse((0, 0, size * 2 - 1, size * 2 - 1), fill=disc)
