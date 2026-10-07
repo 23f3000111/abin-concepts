@@ -1,0 +1,99 @@
+# Decisions log: the two ABIN website concepts
+
+Every decision taken on the client's behalf while building both concepts (plan: `docs/superpowers/plans/2026-10-06-abin-two-sites.md`, spec: `docs/superpowers/specs/2026-10-06-abin-two-sites-design.md`). Each line says what was decided, why, and what it costs if it turns out wrong. Kept here because the working ledger is deleted when the branch is finished.
+
+## Rulings
+
+- Setup: Ruling: work on branch build/abin-concepts in place (no separate worktree) — user pre-approved every step and the sites must stay in this folder (sibling-project convention); merge to main at the finish — cost if wrong: none, the branch can be moved.
+- T2 internal: cartLines lines carry no size/kind, so orderMessage would print bundles as "Variety 4-pack × 30 g, one of each". Ruling: cartLines adds {kind,size}; orderMessage prints "<name> <size> g" for packs and "<name> (<label>)" for bundles — spec §7 says the message lists items and sizes — cost if wrong: one string format.
+- Setup: Ruling: strip the trailing sourceMappingURL comment from vendor lenis.min.js in shared/js/vendor — avoids a 404 for a missing .map when served — cost if wrong: none.
+- Task 1: Ruling: render() tests pass page names with the .html suffix ('shop.html') as build() does, instead of the plan's bare 'shop' — matches how build calls render — cost if wrong: none.
+- Task 2: Ruling: added .gitattributes (eol=lf, binaries) — global core.autocrlf=true would otherwise rewrite line endings and make the byte-level sync test fragile — cost if wrong: none.
+- Task 2: Ruling: implemented the pre-flight ruling (cartLines carries kind/size; bundles print "<name> (<label>)") with its own test "order message names a bundle…" — spec §7 — cost if wrong: one string format.
+- Task 2: Ruling: flavour tags are spicy→['spicy'], others ['mild'], Original/Seaweed add 'vegan'; no 'vegetarian' tag — all four flavours are suitable for vegetarians (their poster), so a "Vegetarian" filter would wrongly hide Original/Seaweed; Task 8/13 filters drop the Vegetarian pill — cost if wrong: one filter pill.
+- Task 2: Ruling: data.test asset-existence tests stay red until Task 3 as the plan states; task-done for Task 2 runs core/pages/sync tests.
+- Task 3: Ruling: packs matted with a flood-fill-from-white matte instead of rembg — the AI matte cut holes in the cream Original packs; renders sit on pure white so the flood fill is exact — cost if wrong: none (visually verified on all 8).
+- Task 3: Ruling: rembg model birefnet-general-lite (cached locally, sharper than isnet) run one image per process — it failed with "bad allocation" on the second image in one process — cost if wrong: slower runs only.
+- Task 3: Ruling: logo/halal/kernels upscaled with Real-ESRGAN (downloaded to the session scratchpad, ESRGAN env var; Lanczos fallback) — matches bloopsbaby's logo treatment — cost if wrong: softer logo on re-runs without the binary.
+- Task 3: Ruling: orbs are ingredient cut-outs on flavour-tinted discs (plus loose cut-outs in img/ingredients/) instead of plain circle crops — circle crops carried pack text (MS1500, CRUNCHY CORN); nori uses texture (disc + torn piece) because the sheet overlaps the pack lettering — cost if wrong: none.
+- Task 3: Ruling: MeSTI and Produk Malaysia rendered from the catalogue's vector artwork with the photo redacted (crisp, transparent) instead of cropping the raster — the embedded image holds no logos — cost if wrong: none.
+- Task 3: Ruling: stock photos (Unsplash cafe Z-v4bNSBlSw, orange gift iPy5gzQMZX4 with printed brand names blurred) for the HORECA and gifts channels only; every other channel/photo is ABIN's own material — cost if wrong: two swaps.
+- Task 3: Ruling: fonts.py downloads with curl — Python urllib hit getaddrinfo failures in this sandbox — cost if wrong: none.
+- Task 4: Ruling: moved shop filtering/sorting and the trade-enquiry hand-off into core.js with tests first (filterSkus, sortSkus, enquiryParse, enquiryString) — keeps the DOM glue thin and testable — cost if wrong: none.
+- Task 4: Ruling: DOM glue (ui.js, shop.js, forms.js) is verified in the browser during Tasks 5–16 rather than with jsdom — no npm dependencies in this static project (plan's Task 4 steps) — cost if wrong: UI bugs surface later, in the page tasks.
+- Task 4: Ruling: placeholder prices show an asterisk with a "confirmed on WhatsApp" note in the bag/quick view/product page — honest about invented 30 g and bundle prices without breaking the pitch — cost if wrong: copy tweak.
+- Task 5: Ruling: Concept A canvas is corn-silk #FFF5D6 (spec said cream #FFF8E6) and buttons are outlined with a hard ink shadow (cartoon outline of the ABIN logo) instead of bloopsbaby's glossy gradients — frontend-design: avoid the generic warm-cream canvas, ground the look in the brand — cost if wrong: token swap.
+- Task 5: Ruling (applies to Task 10+): Concept B palette becomes ABIN's shopfront — white/ice #EEF2F9 canvas, sign-navy #13234A ink, sign blue #1F45C8, ABIN yellow #FFD21E accent — instead of warm paper #F6F3EC + near-black ink; Instrument Serif italic accent words are dropped; mono only for real data (barcodes, nutrition, times) — frontend-design flags cream+serif-accent and mono labels as generated-design tells; navy/blue/yellow is the real ABIN signboard — cost if wrong: token swap.
+- Task 5: Ruling: dialogs give initial focus to their panel (tabindex=-1 autofocus) and text-split reveals wait for fonts — avoids a stray focus ring and SplitText metric warnings — cost if wrong: none.
+- Task 6: Ruling: CSS hover effects on GSAP-animated elements use the individual translate/rotate/scale properties, never transition:transform — a CSS transform transition restarted every frame from scale(0) is non-decomposable and froze the hero stickers invisible — cost if wrong: none.
+- Task 6: Ruling: scroll lock sets overflow only on <html> — overflow on <body> too made body a scroll container and unstuck the sticky header when a menu/dialog opened mid-page — cost if wrong: none.
+- Task 6: Ruling: Crunch Field sticks fall (like the falling sticks in ABIN's own ad) rather than rise like bloopsbaby's bubbles, keep 82% of spawns off the headline column on wide screens, and ignore hover over interactive UI — legibility + no invisible snaps behind the packs — cost if wrong: tuning constants.
+- Task 7: Ruling: pinned flavour scene length is 70% of the viewport per flavour (+=280%) and tabs scroll Lenis to the middle of that flavour's segment; below 900 px the scene is unpinned and tabs switch directly — spec §5 — cost if wrong: tuning constants.
+- Task 7: Ruling: display size .d-1 reduced to clamp(50px, 6.5vw, 106px) and stats use small unit suffixes — two-column headings were breaking into 3-4 lines — cost if wrong: none.
+- Task 7: Ruling: Kali's first automatic tip only says "tap the sticks" while the hero is on screen; elsewhere it invites a tap for tips — context-correct copy — cost if wrong: none.
+- Task 8: Ruling: shop filters are All, Spicy, Not spicy, Vegan-friendly, 30 g, 60 g, Bundles (no Vegetarian pill, per the Task 2 ruling) — verified counts 9/2/6/4/4/4/1 — cost if wrong: one pill.
+- Task 8: Ruling: the product page sets flavour colours on <html> only (a body-level default overrode them and showed a red blob on Seaweed) and the pack zoom/moment hooks update with the flavour — cost if wrong: none.
+- Task 9: Ruling (user instruction, mid-task): this round is a desktop showcase for the client — verify and polish at desktop/laptop/Mac sizes only (1280x800, 1366x768, 1440x900, 1512x982, 1728x1117, 1920x1080); no further phone-width work (existing responsive CSS stays, untested). Overrides the plan's 390x844 checks and the Review Focus #5 phone item — cost if wrong: phone polish needed later if the client picks a concept.
+- Task 9: Ruling: shared [data-tabs] helper added to ui.js (contact forms, benefits claims) with hash deep links and same-page link support — spec §5/§6 tabbed forms — cost if wrong: none.
+- Task 9: Ruling: content column widens to 1380 px at >=1600 px screens, display headlines are capped to the column, and the pinned flavour scene sizes by viewport height (fits 1280x800 through 1920x1080) — desktop-only ruling — cost if wrong: tuning constants.
+- Task 9: Ruling: values on About are an unnumbered accordion (not /01 /02) — they are not a sequence; only the cob-to-crunch steps and shop ordering steps are numbered — frontend-design numbering rule — cost if wrong: none.
+- Task 10: Ruling: no thin top bar with mono claims in Concept B — the claims run in the home page's yellow marquee and the footer, and mono stays for real data (Task 5 ruling) — cost if wrong: one partial.
+- Task 10: Ruling: the yellow veil shows the ABIN logo on a white card — the yellow logo vanishes on the yellow veil — cost if wrong: none.
+- Task 10: Ruling: the ring cursor keeps the native pointer except over labelled [data-cursor] targets (View/Play/Zoom) and hides while a dialog is open (dialogs sit in the top layer above it) — no lagging-cursor usability cost — cost if wrong: one CSS line.
+- Task 10: Ruling: Instrument Serif removed from Concept B's fonts (the Task 5 ruling dropped serif accent words) — cost if wrong: re-run tools/fonts.py with it.
+- Task 10: Ruling: the bag header shows a pluralised count via [data-bag-items] in shared shop.js (both sites read "1 items") — cost if wrong: none.
+- Task 11: Ruling (user feedback, mid-task): Concept B drops the white canvas and the grid-paper background — canvas is now ABIN sky blue #E6EDFA (from their blue signboard) and morphs to flavour tints section by section ([data-bg] in fx.js; the hero follows the picked flavour), cards get a soft white glow instead of grid lines — the user said they did not like the white background and grid — cost if wrong: token swap.
+- Task 11: Ruling: travel slots are [data-travel="hero|statement|anatomy|nutrition|taste"] instead of [data-slot] — data-slot is already the template-field hook in shop.js/forms.js, and rendered cards/bag lines were being read as slots — cost if wrong: none.
+- Task 11: Ruling: both faces of the travelling pack carry the front art and a face swaps flavour only while turned away; hops longer than 1.5 viewports fade out mid-way instead of drifting over the range cards and timeline — cost if wrong: tuning constants.
+- Task 11: Ruling: below 900 px and under reduced motion there is no traveller (the static pack in every slot stays), instead of the brief's hero+taste mobile path — desktop-only ruling — cost if wrong: a mobile path later.
+- Task 11: Ruling: the hero h1 is the giant KALI KALI wordmark in the flavour's deep colour, split either side of the pack; the corner labels are real data in mono (Rawang coordinates, the pack's EAN, kcal per serving, MS1500) and scramble when the flavour changes — cost if wrong: copy tweak.
+- Task 12: Ruling (user feedback, mid-task): Concept B goes vibrant instead of pastel — canvas is ABIN sky #4DA3FF and every flavour owns a saturated colour (chilli red #D9341F, cheddar orange #FF7F11, corn-husk green #2DB34A, nori cobalt #2457E6) plus ABIN yellow; html[data-canvas] drives background, text ink (navy or white) and button colours; card art and quick view use the vivid colour — the user asked for vibrant colours instead of pastels — cost if wrong: token swap.
+- Task 12: Ruling (user feedback, mid-task): moments are named by the time of day (Lunch time, Tea time, Family time, Game night) instead of clock times, in data.js (when) and in both concepts, pinned by a data test; titles no longer carry clock times either — the user asked for "breakfast time, lunch time" style names — cost if wrong: copy tweak.
+- Task 12: Ruling: Original's colour in Concept B is corn-husk green rather than cream so all four flavours read as distinct vivid colours and the cream pack stands out — cost if wrong: one token.
+- Task 12: Ruling: the anatomy callout lines and dots sit above the travelling pack (z 12 over 10) so each dot marks the real feature on the pack; long hops keep the pack solid within 0.15 screens of a slot and fade by distance — cost if wrong: tuning constants.
+- Task 13: Ruling (user feedback on Concept A, mid-task): the A hero keeps only the four packs, made bigger (34% to 39% of the stage, re-fanned to stay inside the viewport from 1280 to 1920); the four floating ingredient cards, the rotating text ring, the yellow blob and the 0% badge are removed; the hero entrance now waits for fonts (no SplitText warning) — the user asked to remove the floating cards and rotating circle and keep the four products a little bigger — cost if wrong: restore from b9a03b7..0311ca1.
+- Task 13: Ruling: the shop's Retail/Trade switch reads "For me" / "For my business" (plain words for the person choosing); the header "For trade" link opens the shop in trade mode, and same-page #trade/#retail links switch mode in place via a shared shop.setMode — cost if wrong: two labels.
+- Task 13: Ruling: Concept B's product page gets its own page script product.js (per-flavour ad clip in the lightbox, flavour word measured to fit the stage, entrance) instead of growing scenes.js — keeps home scenes and product extras apart — cost if wrong: none.
+- Task 13: Ruling: ingredient cut-outs that were cropped against the pack render's edge (corn, cheese) are feathered toward that edge in tools/assets.py (feather), regenerating ingredients/ and orbs/ for both concepts — the hard straight cuts showed in open space on the product hero and method cards — cost if wrong: re-run without feather.
+- Task 13: Ruling: in trade mode the toasts sit above the sticky enquiry bar (bottom 112px) so confirmations never cover it — cost if wrong: one CSS line.
+- Task 14: Ruling: Concept B's contact page reuses Concept A's three forms (same field names, so forms.js validation and message building are shared) restyled, with Trade enquiry first and a "N products from your enquiry list" chip when arriving from the shop — cost if wrong: tab order.
+- Task 14: Ruling: inner pages carry the vibrant canvases section by section (About: sky, yellow story, cobalt journey, orange numbers, red CTA; Benefits: green hero, yellow deep-dive, orange who-it's-for; FAQ: sky with a cobalt CTA; Contact: yellow forms, cobalt map) — the user's vibrant-colour feedback — cost if wrong: data-bg swaps.
+- Task 14: Ruling: the "Spice lovers" card uses a frame from ABIN's ad (reel-2.jpg, 540 px) because the bold-flavour poster is only 494 px wide and blurs at card size — cost if wrong: one image.
+- Task 15: Ruling: the chooser is split down the middle in each concept's own colour (corn silk for A, ABIN sky for B) and floods on hover, with the fonts loaded from the two concept folders so it works offline and from disk — the brief's "light split screen" with a colour wash per concept — cost if wrong: one page.
+- Task 15: Ruling: the chooser's reference test (tests/pages.test.js) was added after the chooser; it was proven by mutation (renaming assets/preview-b.webp made it fail with "missing local file", restoring made it pass) instead of RED-first — cost if wrong: none.
+- Task 15: Ruling: READMEs state this round is desktop-only, list the Variety 4-pack as a proposed bundle, and add a click-through demo script per concept for the client meeting — cost if wrong: copy edits.
+- Task 15: Ruling: Concept B's bag pill hides an empty count badge (shows just "Bag") — a yellow "0" read as a notification in the preview — cost if wrong: one CSS line.
+- Task 16: Ruling: the sweep ran at the six desktop sizes (1280x800, 1366x768, 1440x900, 1512x982, 1728x1117, 1920x1080) instead of 1440 + 390, per the Task 9 desktop-only ruling — 84 page/size loads, each scrolled top to bottom: no horizontal overflow, no hidden reveal content, no stuck words, no broken images, no failed requests, no console errors or warnings — cost if wrong: phone checks later.
+- Final: Ruling: Task 3 committed site-b-jagung-rangup/assets/docs/abin-packaging-specs.pdf, a byte-identical copy of ABIN PACKAGING.pdf, as Concept B's "Packaging specs (PDF)" trade download, without a ledgered ruling at the time — it is ABIN's one-page retailer spec sheet (packs, weights, shelf life, barcodes, carton sizes), and the constraint's aim is keeping the raw sources (ui images/, the 129 MB catalogue) out of git; the two source files themselves remain ignored — cost if wrong: delete one file and three links.
+
+## Deferred minor issues
+
+- a malformed percent-encoded hash on a shop page (e.g. shop.html#%E0%A4%A) throws an uncaught "URI malformed" console error from shop.js hashQuick; nothing visible breaks.
+- Concept B's travelling-pack button stays in the keyboard tab order while the pack is faded out between sections or burst.
+- Concept B's ring cursor shows View and Play labels only; the spec also listed Add and Drag.
+
+## Final review and verification notes
+
+- Final review: self-review (subagents are only spawned in this harness when the user asks; the review covered shared logic, both concepts' motion code, tools and tests, plus extra-engine runs in WebKit and Firefox via playwright-core 1.58 in the scratchpad)
+- Final: fixed Concept B travelling pack rendered mirrored in WebKit (Safari's engine) — scratchpad/wk mirror.js + mirror_check.py RED (ribbon left/right 69/228 and 84/268) → GREEN (248/69, 269/89), mid-hop verified in WebKit and Chromium, suite 62/62
+- Final: Note: WebKit for Windows (the only Safari-engine build available here) also draws variable-font widths and weights at their default instance (KALI KALI letters spread apart, Rubik and Geist look light) and leaves an unpainted patch at the top-left of B pages that use large blurred drop-shadows; Chromium and Firefox render both correctly and macOS Safari uses a different text and compositing backend, so these are treated as test-engine artifacts — recommend one look at both concepts in Safari on the Mac before the meeting.
+- Final: Note: Firefox sweep (28 page loads at 1512x982 and 1440x900, plus quick view, bag and page transition) passed; its only logs are Google Maps iframe noise and Firefox's generic scroll-linked-effect advisory.
+
+## Task completion record
+
+- Task 1: complete (commits 130538e..643d2af, tests: node --test tests/ → # duration_ms 189.3453)
+- Task 2: complete (commits 643d2af..53950e7, tests: node --test tests/core.test.js tests/pages.test.js tests/sync.test.js → # duration_ms 409.2366)
+- Task 3: complete (commits 53950e7..4b83d84, tests: node --test tests/ → # duration_ms 207.5242)
+- Task 4: complete (commits 4b83d84..8660509, tests: node --test tests/ → # duration_ms 192.5487)
+- Task 5: complete (commits 8660509..b9a03b7, tests: node --test tests/ → # duration_ms 227.8715)
+- Task 6: complete (commits b9a03b7..0311ca1, tests: node --test tests/ → # duration_ms 399.7764)
+- Task 7: complete (commits 0311ca1..8e05265, tests: node --test tests/ → # duration_ms 282.7431)
+- Task 8: complete (commits 8e05265..96d8a8c, tests: node --test tests/ → # duration_ms 323.7041)
+- Task 9: complete (commits 96d8a8c..29d19e0, tests: node --test tests/ → # duration_ms 311.0431)
+- Task 10: complete (commits 29d19e0..f0b4435, tests: node --test tests/ → # duration_ms 285.1066)
+- Task 11: complete (commits f0b4435..0b77bab, tests: node --test tests/ → # duration_ms 385.968)
+- Task 12: complete (commits 0b77bab..cbf1e6c, tests: node --test tests/ → # duration_ms 439.198)
+- Task 13: complete (commits cbf1e6c..586d5bb, tests: node --test tests/ → # duration_ms 280.5726)
+- Task 14: complete (commits 586d5bb..ac9f53e, tests: node --test tests/ → # duration_ms 354.4767)
+- Task 15: complete (commits ac9f53e..7650423, tests: node --test tests/ → # duration_ms 347.0124)
+- Task 16: complete (commits 7650423..6253f98, tests: node --test tests/ → # duration_ms 540.7242)
