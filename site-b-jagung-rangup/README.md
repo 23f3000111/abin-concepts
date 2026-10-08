@@ -8,7 +8,7 @@ Tuned for desktop and laptop screens. Phone layouts exist but have not been chec
 
 | Page | What is on it |
 |---|---|
-| `index.html` | KALI KALI hero with the flavour picker, the statement, "Read the pack" callouts, full-bleed photo, nutrition that rolls per flavour, claims marquee, the range, "A day with Kali Kali", how it's made, "Taste the crunch", trade channels, video ads, reviews, expos |
+| `index.html` | KALI KALI hero with the flavour picker, the statement, "Read the pack" callouts, full-bleed photo, nutrition that rolls per flavour, claims marquee, the range, "A day with Kali Kali", how it's made, "Taste the crunch", trade channels, video ads, reviews (each with the pack it talks about), expos, and a map to the factory |
 | `shop.html` | "For me" mode: filters, sort and nine product cards with quick view and label zoom. "For my business" mode: eight spec cards with EAN-13 barcodes, shelf life and carton size, an enquiry list and PDF downloads |
 | `product.html?f=spicy&s=60` | One template for all eight packs, in the flavour's colour: label zoom, size switch, quantity, add to bag, Shopee, specs table with barcode, nutrition, taste notes, moment pairing, the flavour's ad clip, other flavours, next flavour |
 | `about.html` | Team photo, the story, a timeline from MIHAS to the UAE, numbers, certifications, the crew |

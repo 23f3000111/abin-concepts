@@ -197,6 +197,22 @@
     if (!sec) return;
     var qs = $$('.quote', sec), tabs = $$('[data-q-go]', sec), i = 0, active = false, paused = false;
     var tint = function (k) { return qs[k].getAttribute('data-flavour') || 'sky'; };
+    /* the card shows the pack of the flavour the reviewer loves, with a shop link for it */
+    var pack = $('[data-quote-pack]', sec), shop = $('[data-quote-shop]', sec), shopLabel = $('[data-quote-shop-label]', sec);
+    var syncPack = function (k, animate) {
+      var f = FLAV[qs[k].getAttribute('data-flavour')];
+      if (!f) return;
+      var swap = function () { if (pack) { pack.src = f.img[60].replace('.webp', '-sm.webp'); pack.alt = 'Kali Kali ' + f.name + ' 60 g pack'; } };
+      if (shop) shop.href = 'product.html?f=' + f.id + '&s=60';
+      setText(shopLabel, 'Shop ' + f.name);
+      if (!pack || pack.getAttribute('src').indexOf('/' + f.id + '-') > -1) return;
+      if (!animate || !hasGSAP || reduce) { swap(); return; }
+      gsap.timeline()
+        .to(pack, { y: 30, opacity: 0, duration: 0.25, ease: 'power2.in' })
+        .add(swap)
+        .fromTo(pack, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.8)' });
+    };
+    syncPack(0, false);
     var show = function (k, focus) {
       if (k === i) return;
       var old = qs[i], next = qs[k];
@@ -204,6 +220,7 @@
       tabs.forEach(function (t, n) { t.setAttribute('aria-selected', String(n === k)); t.tabIndex = n === k ? 0 : -1; });
       if (focus) tabs[k].focus();
       if (active) setBg(tint(k));
+      syncPack(k, true);
       if (!hasGSAP || reduce) { old.hidden = true; next.hidden = false; return; }
       gsap.killTweensOf([old, next]);
       gsap.to(old, { opacity: 0, y: -18, duration: 0.3, ease: 'power2.in', onComplete: function () { old.hidden = true; } });

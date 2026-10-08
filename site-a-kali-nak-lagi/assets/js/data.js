@@ -28,8 +28,8 @@
       xiaohongshu: 'https://www.xiaohongshu.com/user/profile/652f81d1000000002a028840',
       lemon8: 'https://s.lemon8-app.com/s/GgUMFmFwb',
       linktree: 'https://linktr.ee/aBinCornStick',
-      map: 'https://www.google.com/maps/search/?api=1&query=Jalan+BJ+2+Taman+Perindustrian+Belmas+Johan+48000+Rawang+Selangor',
-      mapEmbed: 'https://maps.google.com/maps?q=Jalan%20BJ%202%2C%20Taman%20Perindustrian%20Belmas%20Johan%2C%2048000%20Rawang%2C%20Selangor&z=15&output=embed'
+      map: 'https://maps.google.com/?cid=5110239004552630136',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.1643368213167!2d101.5568107!3d3.3094994000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc43774d9c2125%3A0x46eb374ca7b48f78!2sABIN%20MANUFACTURING%20SDN%20BHD!5e0!3m2!1sen!2smy!4v1791432650857!5m2!1sen!2smy'
     },
 
     lines: {

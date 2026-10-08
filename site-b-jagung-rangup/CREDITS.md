@@ -34,5 +34,5 @@
 - The WhatsApp number used for prefilled orders and enquiries (+60 19-976 1857).
 - 60 g shelf life (12 months), carton size (20 packs) and barcodes are from the 2024 catalogue; the trade cards say so. Confirm them for the new 60 g pack.
 - Allergen information and the full ingredient list, plus delivery and payment terms for WhatsApp orders.
-- The hero's coordinates (3.32° N, 101.58° E) are Rawang's, not the factory's exact position.
+- The hero's coordinates (3.31° N, 101.56° E) and both maps come from ABIN Manufacturing's own Google Maps listing.
 - The names of the four snack moments (Lunch time, Tea time, Family time, Game night) and their pairings are our copy, built on ABIN's own posters and ads.
