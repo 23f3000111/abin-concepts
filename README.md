@@ -4,6 +4,12 @@ Two alternative seven-page websites for ABIN Snack Food's Kali Kali crunchy corn
 
 This round is tuned for desktop and laptop screens (1280 to 1920 px wide). Phone layouts exist but have not been checked yet; that work follows once a concept is chosen.
 
+## Live
+
+- **Chooser (both concepts):** <https://23f3000111.github.io/abin-concepts/>
+- **Concept A, Kali Nak Lagi!:** <https://23f3000111.github.io/abin-concepts/site-a-kali-nak-lagi/>
+- **Concept B, Jagung Rangup:** <https://23f3000111.github.io/abin-concepts/site-b-jagung-rangup/>
+
 ## Open it locally
 
 - Double-click `index.html` in this folder. It is a chooser page that links to both concepts.
